@@ -1,0 +1,112 @@
+.content{
+    display: flex;
+    align-items: center;
+    min-height: 96%;
+}
+.box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1% 0 1% 0;
+}
+.box-rec-senha{
+    display: flex;
+    text-align: center;
+    padding-bottom: 5px;
+}
+.box-btn-login{
+    text-align: center;
+}
+.fieldset{
+    padding: 1% 0 2% 0;
+    width: 350px;
+}
+#fieldset-btn-login{
+    padding: 5%;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.h1{
+    font-size: 50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.h1#h1-rec-senha{
+    margin-top: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+input{
+    margin-bottom: 10px;
+    width: 80%;
+    height: 25px;
+    color: black;
+    padding-left: 10px;
+}
+input:focus{
+    outline: none;
+    color: rgb(0, 153, 255);
+}
+input::placeholder {
+    margin-top: 5px;
+    font-size: 15px;
+}
+.inputUser{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.inputSubmit{
+    margin-bottom: 20px;
+    border: none;
+    background-color: rgb(0, 153, 255);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    font-size: 20px;
+}
+.inputSubmit:hover{
+    transition: 0.4s;
+    background-color: rgb(0, 119, 255);
+    color: rgb(236, 235, 235);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    padding: 5px;
+    color: gray;
+}
+select#idioma{
+    background: none;
+    color: gray;
+}
+select#idioma:focus{
+    outline: none;
+}

@@ -1,0 +1,43 @@
+header{
+    background-image:linear-gradient(to top, rgb(2, 18, 141), rgb(1, 9, 70));
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.logo{
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+}
+.icon-sair{
+    display: flex;
+    right: 1%;
+    color: white;
+}
+.navbar{
+    padding: 0 10px 10px 10px;
+    display: flex;  
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+.icon-compras{
+    color: white;
+}
+.icon-vendas{
+    color: white;
+}
+.icon-estoque{
+    color: white;
+}
+@media screen and (width: 175%) {
+    header {
+        font-size: 14px;
+    }
+}
