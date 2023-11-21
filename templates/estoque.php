@@ -1,6 +1,6 @@
 <?php
     include '../includes/autenticacao.php';
-    include '../includes/adm.php';
+    include '../includes/perm-adm.php';
     include '../includes/alert.php';
     
     if(!empty($_GET['id'])){
