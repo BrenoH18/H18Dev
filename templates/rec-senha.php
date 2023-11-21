@@ -11,8 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Recuperar Senha</title>
             <link rel="stylesheet" href="../static/css/reset.css">
-            <link rel="stylesheet" href="../static/css/header.css">
-            <link rel="stylesheet" href="../static/css/footer.css">
             <link rel="stylesheet" href="../static/css/rec-senha.css">
     </head>
     <body>        
@@ -38,5 +36,6 @@
                 </div>
             </div>
         </div>
+        <?php include '../includes/footer.php';?>
     </body>
 </html>
