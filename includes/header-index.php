@@ -21,7 +21,6 @@
                 echo "<a href='templates/vendas.php?id=$id' class='icon 'id='icon-vendas'>Venda de Produtos</a>";
             echo"</nav>";
         }elseif($user_data['permissao'] == 'user'){
-        }else{
             header("Location: ../index.php?id=$user_data[id]");
         }
     };

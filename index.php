@@ -10,7 +10,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Home</title>
         <link rel="stylesheet" href="static/css/reset.css">
-        <link rel="stylesheet" href="static/css/footer.css">
         <link rel="stylesheet" href="static/css/index.css">
     </head>
     <body>
