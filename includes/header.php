@@ -12,17 +12,16 @@
             echo"</nav>";
         }elseif($user_data['permissao'] == 'administrador'){
             echo"<nav class='navbar'>";
-                echo "<a href='../templates/compras.php?id=$id' class='icon' id='icon-compras'>Compra de Produtos</a>";
-                echo "<a href='../templates/vendas.php?id=$id' class='icon 'id='icon-vendas'>Venda de Produtos</a>";
+                // echo "<a href='../templates/compras.php?id=$id' class='icon' id='icon-compras'>Compra de Produtos</a>";
+                // echo "<a href='../templates/vendas.php?id=$id' class='icon 'id='icon-vendas'>Venda de Produtos</a>";
                 echo "<a href='../templates/estoque.php?empresa=<?php echo $empresa?>&tipo=todos' class='icon' id='icon-estoque'>Estoque de Produtos</a>";
             echo"</nav>";
         }elseif($user_data['permissao'] == 'vendedor'){
             echo"<nav class='navbar'>";
-                echo "<a href='../templates/vendas.php?id=$id' class='icon 'id='icon-vendas'>Venda de Produtos</a>";
+                // echo "<a href='../templates/vendas.php?id=$id' class='icon 'id='icon-vendas'>Venda de Produtos</a>";
             echo"</nav>";
         }elseif($user_data['permissao'] == 'user'){
-        }else{
-            header("Location: ../index.php?id=$user_data[id]");
+            header("Location: ../index.php?id=$id");
         }
     };
 ?>
