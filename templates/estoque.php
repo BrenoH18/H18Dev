@@ -3,47 +3,50 @@
     include '../includes/perm-adm.php';
     include '../includes/alert.php';
     
-    if(!empty($_GET['id'])){
+    $id = $user_data['id'];
 
-        $id_user = $_GET['id'];
+    if(!empty($_GET['empresa'])){
+
+        $empresa = $user_data['empresa'];
+        $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
         $tipo = $_GET['tipo'];
 
         if(!empty($_GET['search'])){
             $value_pesquisa = $_GET['search'];
 
             if($tipo == 'todos'){
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (referencia = '$value_pesquisa' OR fornecedor LIKE '%$value_pesquisa%'OR descricao LIKE '%$value_pesquisa%' OR modelo LIKE '%$value_pesquisa%' OR marca LIKE '%$value_pesquisa%') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (referencia = '$value_pesquisa' OR fornecedor LIKE '%$value_pesquisa%'OR descricao LIKE '%$value_pesquisa%' OR modelo LIKE '%$value_pesquisa%' OR marca LIKE '%$value_pesquisa%') ORDER BY id ASC";
                 $result = $db->query($sql);
             }elseif($tipo == "id"){
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (id = '$value_pesquisa') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (id = '$value_pesquisa') ORDER BY id ASC";
                 $result = $db->query($sql);
             }elseif($tipo == "referencia"){
                 $value_pesquisa = str_pad($_GET['search'], 4, '0', STR_PAD_LEFT);
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (referencia = '$value_pesquisa') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (referencia = '$value_pesquisa') ORDER BY id ASC";
                 $result = $db->query($sql);
             }elseif($tipo == "descricao"){
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (descricao LIKE '%$value_pesquisa%') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (descricao LIKE '%$value_pesquisa%') ORDER BY id ASC";
                 $result = $db->query($sql);
             }elseif($tipo == "modelo"){
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (modelo LIKE '%$value_pesquisa%') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (modelo LIKE '%$value_pesquisa%') ORDER BY id ASC";
                 $result = $db->query($sql);
             }elseif($tipo == "marca"){
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (marca LIKE '%$value_pesquisa%') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (marca LIKE '%$value_pesquisa%') ORDER BY id ASC";
                 $result = $db->query($sql);
             }elseif($tipo == "fornecedor"){
-                $sql = "SELECT * FROM produtos WHERE id_user=$id_user AND (fornecedor LIKE '%$value_pesquisa%') ORDER BY id ASC";
+                $sql = "SELECT * FROM $tabela WHERE (fornecedor LIKE '%$value_pesquisa%') ORDER BY id ASC";
                 $result = $db->query($sql);
             }
         }else{
             $value_pesquisa = '';
             
-            $sql = "SELECT * FROM produtos WHERE id_user=$id_user ORDER BY id ASC";
+            $sql = "SELECT * FROM $tabela ORDER BY id ASC";
             $result = $db->query($sql);
         }
 
     }
     else{
-        header("Location: estoque.php?id=$user_data[id]");
+        header("Location: estoque.php?empresa=$user_data[empresa]&tipo=todos");
     }
 
  
@@ -74,7 +77,7 @@
                     <option value="fornecedor" <?php echo ($_GET['tipo'] == 'fornecedor') ? 'selected' : ''; ?>>Fornecedor</option>
                 </select>
                 <input type="search" class="inputPesquisa" value="<?php echo $value_pesquisa ?>" placeholder="Pesquisar" id="pesquisar">
-                <input type="hidden" name="id_user" value="<?php echo $user_data['id'] ?>" id="id_user">
+                <input type="hidden" name="empresa" value="<?php echo $user_data['empresa'] ?>" id="empresa">
                 <button onclick="searchData()" class="btn-pesquisa">
                     <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -99,7 +102,7 @@
                             <th scope="col">Editar</th>
                             <th scope="col" class="th" id="th-2">Remover</th>
                             <?php
-                                echo "<th scope='col' class='btn-add' id='btn-add'><a class='btn' id='add' href='cadastro-produtos.php?id=$id_user' class='btn-adicionar-produto'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/> <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 18 4z'/></svg></a></th>";
+                                echo "<th scope='col' class='btn-add' id='btn-add'><a class='btn' id='add' href='cadastro-produtos.php?id=$id' class='btn-adicionar-produto'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-plus-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/> <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 18 4z'/></svg></a></th>";
                             ?>
                         </tr>
                     </thead>

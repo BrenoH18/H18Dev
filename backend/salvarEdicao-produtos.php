@@ -16,7 +16,10 @@
         $custoEstoque = $qtd*$custo;
         $lucro = $venda-$custo;
 
-        $sqlUpdate = "UPDATE produtos SET descricao='$descricao', modelo='$modelo', marca='$marca', fornecedor='$fornecedor', qtd='$qtd', custo='$custo', venda='$venda', lucro='$lucro', custoEstoque='$custoEstoque' WHERE id='$id'";
+        $empresa = $user_data['empresa'];
+        $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
+
+        $sqlUpdate = "UPDATE $tabela SET descricao='$descricao', modelo='$modelo', marca='$marca', fornecedor='$fornecedor', qtd='$qtd', custo='$custo', venda='$venda', lucro='$lucro', custoEstoque='$custoEstoque' WHERE id='$id'";
 
         $result = $db->query($sqlUpdate);
     }
@@ -25,5 +28,5 @@
     $consult = "SELECT * FROM usuarios WHERE email = '$email'";
     $consult_result = $db->query($consult);
     $user_data = mysqli_fetch_assoc($consult_result);
-    header("Location: ../templates/estoque.php?id=$user_data[id]&tipo=todos");
+    header("Location: ../templates/estoque.php?empresa=$user_data[empresa]&tipo=todos");
 ?>

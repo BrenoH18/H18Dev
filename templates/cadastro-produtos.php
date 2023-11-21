@@ -39,7 +39,7 @@
                         <br><br>
                         <input type="number" step="0.01" name="venda" id="venda" class="inputUser" placeholder="Preço de Venda" required>
                         <br><br>
-                        <input type="hidden" name="id_user" value="<?php echo $user_data['id'] ?>">
+                        <input type="hidden" name="empresa" value="<?php echo $user_data['empresa'] ?>">
                         <input type="submit" name="submit" id="submit" class="inputSubmit"><br>
                         <button class="btn-voltar" onclick="window.location.href='estoque.php?id=<?php echo $user_data['id']?>&tipo=todos'">Voltar</button>
                     </fieldset>

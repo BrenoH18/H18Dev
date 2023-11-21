@@ -1,4 +1,4 @@
-var id_user = document.getElementById('id_user');
+var empresa = document.getElementById('empresa');
 var search = document.getElementById('pesquisar');
 var tipo = document.getElementById('select-tipo');
 
@@ -9,5 +9,5 @@ search.addEventListener("keydown", function(event) {
 });
 
 function searchData() {
-        window.location = 'estoque.php?id=' + id_user.value + '&tipo=' + tipo.value + '&search=' + search.value;
+        window.location = 'estoque.php?empresa=' + empresa.value + '&tipo=' + tipo.value + '&search=' + search.value;
 }

@@ -11,7 +11,7 @@
     <nav class="navbar">
         <a href="templates/compras.php?=id<?php echo $user_data['id']?>" class="icon-compras">Compra de Produtos</a>
         <a href="templates/vendas.php?=id<?php echo $user_data['id']?>" class="icon-vendas">Venda de Produtos</a>
-        <a href="templates/estoque.php?id=<?php echo $user_data['id']?>&tipo=todos" class="icon-estoque">Estoque de Produtos</a>
+        <a href="templates/estoque.php?empresa=<?php echo $user_data['empresa']?>&tipo=todos" class="icon-estoque">Estoque de Produtos</a>
         <a href="templates/cadastro-empresas.php?id=<?php echo $user_data['id']?>&tipo=todos" class="icon-estoque">Cadastro de Empresas</a>
     </nav>
 </header>

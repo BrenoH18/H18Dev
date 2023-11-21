@@ -3,11 +3,15 @@
     include '../includes/perm-adm.php';
     include '../includes/alert.php';
 
+    
     if(!empty($_GET['id'])){
 
         $id = $_GET['id'];
+        
+        $empresa = $user_data['empresa'];
+        $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
 
-        $sqlSelect = "SELECT * FROM produtos WHERE id=$id";
+        $sqlSelect = "SELECT * FROM $tabela WHERE id=$id";
         $result = $db->query($sqlSelect);
 
         if($result->num_rows > 0){
@@ -22,11 +26,11 @@
             }
         }
         else{
-            header("Location: estoque.php?id=$user_data[id]");
+            header("Location: estoque.php?empresa=$user_data[empresa]&tipo=todos");
         }
     }
     else{
-        header("Location: estoque.php?id=$user_data[id]");
+        header("Location: estoque.php?empresa=$user_data[empresa]&tipo=todos");
     }
 ?>
 
@@ -65,7 +69,7 @@
                             <br><br>
                             <input type="hidden" name="id" value="<?php echo $id ?>">
                             <input type="submit" name="update" id="update" class="inputSubmit"><br>
-                            <button class="btn-voltar" onclick="window.location.href='estoque.php?id=<?php echo $user_data['id']?>&tipo=todos'">Voltar</button>
+                            <button class="btn-voltar" onclick="window.location.href='estoque.php?empresa=<?php echo $user_data['empresa']?>&tipo=todos'">Voltar</button>
                         </fieldset>
                     </form>
                 </div>

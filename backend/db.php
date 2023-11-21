@@ -13,6 +13,12 @@
         die("Conexão falhou: " . $db->connect_error);
     }
 
+    $email = $_SESSION['email'];
+
+    $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
+    $result = $db->query($sql) or die($db->error);
+    $user_data = mysqli_fetch_assoc($result);
+
     // Verifica se a tabela já existe no banco de dados
     $tabelaUsuarios = $db->query("SHOW TABLES LIKE 'usuarios'");
 
@@ -24,7 +30,8 @@
             sobrenome VARCHAR(45),
             email VARCHAR(45),
             senha VARCHAR(255),
-            permissao INT DEFAULT O
+            empresa VARCHAR(45),
+            permissao VARCHAR(45)
         )";
 
         // Executa o comando SQL para criar a tabela apenas se ela não existir
@@ -34,25 +41,30 @@
     }
 
     // Verifica se a tabela já existe no banco de dados
-    $tabelaProdutos = $db->query("SHOW TABLES LIKE 'produtos'");
+    $empresa = $user_data['empresa'];
+    $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
 
-    if ($tabelaProdutos->num_rows == 0) {
-        // SQL para criar a tabela produtos
-        $sql = "CREATE TABLE produtos (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            referencia VARCHAR(45),
-            descricao VARCHAR(45),
-            modelo VARCHAR(45),
-            marca VARCHAR(45),
-            fornecedor VARCHAR(45),
-            qtd INT,
-            custo DECIMAL(10, 2),
-            venda DECIMAL(10, 2),
-            lucro DECIMAL(10, 2),
-            custoEstoque DECIMAL(10, 2),
-            id_user INT,
-            FOREIGN KEY (id_user) REFERENCES usuarios(id)
-        )";
+    if ($tabela != 'produtos_'){
+
+        $tabelaProdutos = $db->query("SHOW TABLES LIKE '$tabela'");
+
+        if ($tabelaProdutos->num_rows == 0) {
+            // SQL para criar a tabela produtos
+            $sql = "CREATE TABLE $tabela (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                referencia VARCHAR(45),
+                descricao VARCHAR(45),
+                modelo VARCHAR(45),
+                marca VARCHAR(45),
+                fornecedor VARCHAR(45),
+                qtd INT,
+                custo DECIMAL(10, 2),
+                venda DECIMAL(10, 2),
+                lucro DECIMAL(10, 2),
+                custoEstoque DECIMAL(10, 2),
+                empresa VARCHAR(45)
+            )";
+        }
 
         // Executa o comando SQL para criar a tabela apenas se ela não existir
         if ($db->query($sql) === FALSE) {

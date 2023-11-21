@@ -14,20 +14,21 @@
         $venda = $_POST['venda'];
         $lucro = $venda-$custo;
         $custoEstoque = $qtd*$custo;
-        $id_user = $_POST['id_user'];
+        $empresa = $_POST['empresa'];
 
-        $referencia_exists_query = mysqli_query($db, "SELECT * FROM produtos WHERE referencia='$referencia'");
+        $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
+        $referencia_exists_query = mysqli_query($db, "SELECT * FROM $tabela WHERE referencia='$referencia'");
         if (mysqli_num_rows($referencia_exists_query) > 0) {
             header('Location: ../templates/cadastro-produtos.php?alert=referencia_alert&mensagem=Esta referência já está cadastrada em outro produto. Por favor, escolha outra referência!');
         }else{
-            $result = mysqli_query($db, "INSERT INTO produtos ( referencia, descricao, modelo, marca, fornecedor, qtd, custo, venda, lucro, custoEstoque, id_user) VALUES ( '$referencia', '$descricao', '$modelo', '$marca', '$fornecedor', '$qtd', '$custo', '$venda', '$lucro', '$custoEstoque', '$id_user')");
+            $result = mysqli_query($db, "INSERT INTO $tabela ( referencia, descricao, modelo, marca, fornecedor, qtd, custo, venda, lucro, custoEstoque, empresa) VALUES ( '$referencia', '$descricao', '$modelo', '$marca', '$fornecedor', '$qtd', '$custo', '$venda', '$lucro', '$custoEstoque', '$empresa')");
     
             $email = $_SESSION['email'];
     
             $consult = "SELECT * FROM usuarios WHERE email = '$email'";
             $consult_result = $db->query($consult);
             $user_data = mysqli_fetch_assoc($consult_result);
-            header("Location: ../templates/estoque.php?id=$user_data[id]&tipo=todos");
+            header("Location: ../templates/estoque.php?empresa=$user_data[empresa]&tipo=todos");
         }
     }
 ?>
