@@ -6,83 +6,13 @@
     padding: 2% 0 1% 0;
     min-height: 81%;
 }
-.table-bg{
-    margin-top: 2%;
-    text-align: center;
-    width: 1200px;
-    color: white;
-    padding: 10px;
-}
-table{
-    border-collapse: collapse;
-}
-th.th#th-1{
-    border-top-left-radius: 9px;
-}
-th.th#th-2{
-    border-top-right-radius: 9px;
-}
-th.btn-add#btn-add{
-    border-radius: 9px;
-    color: rgba(255, 255, 255);
-    background-color: rgba(0, 190, 0);
-    background-image:linear-gradient(to bottom, rgba(0, 190, 0), rgba(0, 148, 0));
-}
-th.btn-add#btn-add:hover{
-    transition: 0.4s;
-    border-radius: 9px;
-    color: rgba(255, 255, 255, 0.7);
-    background-image:linear-gradient(to bottom, rgba(0, 190, 0, 0.3), rgba(0, 148, 0, 0.3));
-}
-tr#tr-td{
-    background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.7), rgba(1, 9, 70, 0.7));
-}
-tr{
-    background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.5), rgba(1, 9, 70, 0.5));
-}
-td, th{
-    border: 2px solid white;
-    padding: 5px;
-}
-thead th{
-    border-bottom: 2px solid white;
-}
-tbody td{
-    border-top: 2px solid white;
-}
-a{
-    color: white;
-}
-a.btn{
-    margin: 3px;
-}
-input{
-    width: 80%;
-    height: 25px;
-    color: black;
-    padding-left: 10px;
-}
-input:focus{
-    outline: none;
-    color: rgb(0, 153, 255);
-}
-input::placeholder {
-    margin-top: 5px;
-    font-size: 15px;
-}
-.inputPesquisa{
-    height: 25px;
-    width: 350px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    color: gray;
-}
+
 .box-search{
     display: flex;
     justify-content: center;
     gap: .1%;
 }
+
 .select-tipo{
     border-top: none;
     border-left: none;
@@ -91,6 +21,7 @@ input::placeholder {
     text-align: center;
     color: gray;
 }
+
 .select-tipo:focus{
     border-top: none;
     border-left: none;
@@ -98,6 +29,7 @@ input::placeholder {
     border-bottom: 2px solid gray;
     
 }
+
 .btn-pesquisa{
     margin-left: 0.5%;
     padding: 3px;
@@ -107,11 +39,13 @@ input::placeholder {
     background: none;
     background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.7), rgba(1, 9, 70, 0.7))
 }
+
 .btn-pesquisa:hover{
     transition: 0.4s;
     color: rgba(255, 255, 255, 0.7);
     background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.5), rgba(1, 9, 70, 0.5));
 }
+
 .btn-adicionar-produto{
     margin-top: 1%;
     border-radius: 5px;
@@ -122,3 +56,95 @@ input::placeholder {
     font-size: large;
 }
 
+.box{
+    overflow: auto;
+}
+
+.table-bg{
+    margin-top: 2%;
+    text-align: center;
+    width: 1200px;
+    color: white;
+    padding: 10px;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+th.th#th-1{
+    border-top-left-radius: 9px;
+}
+
+th.th#th-2{
+    border-top-right-radius: 9px;
+}
+
+th.btn-add#btn-add{
+    border-radius: 9px;
+    color: rgba(255, 255, 255);
+    background-color: rgba(0, 190, 0);
+    background-image:linear-gradient(to bottom, rgba(0, 190, 0), rgba(0, 148, 0));
+}
+
+th.btn-add#btn-add:hover{
+    transition: 0.4s;
+    border-radius: 9px;
+    color: rgba(255, 255, 255, 0.7);
+    background-image:linear-gradient(to bottom, rgba(0, 190, 0, 0.3), rgba(0, 148, 0, 0.3));
+}
+
+tr#tr-td{
+    background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.7), rgba(1, 9, 70, 0.7));
+}
+
+tr{
+    background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.5), rgba(1, 9, 70, 0.5));
+}
+
+td, th{
+    border: 2px solid white;
+    padding: 5px;
+}
+
+thead th{
+    border-bottom: 2px solid white;
+}
+
+tbody td{
+    border-top: 2px solid white;
+}
+
+a{
+    color: white;
+}
+
+a.btn{
+    margin: 3px;
+}
+
+input{
+    width: 80%;
+    height: 25px;
+    color: black;
+    padding-left: 10px;
+}
+
+input:focus{
+    outline: none;
+    color: rgb(0, 153, 255);
+}
+
+input::placeholder {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.inputPesquisa{
+    height: 25px;
+    width: 350px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: gray;
+}
