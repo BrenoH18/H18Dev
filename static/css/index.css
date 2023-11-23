@@ -7,24 +7,24 @@
     padding: 1%;
     margin: 0 10% 1% 10%;
 }
-h1{
+.box-apresentacao h1{
     text-align: center;
     font-size: 45px;
 }
-h2{
+.box-apresentacao  h2{
     text-align: center;
     padding-bottom: 50px;
     font-size: 24px;
 }
-p{
+.box-apresentacao  p{
     text-align: justify;
     font-size: 20px;
     padding-bottom: 10px;
 }
-ul{
+.box-apresentacao  ul{
     padding-left: 40px;
     font-size: 20px;
 }
-li{
+.box-apresentacao li{
     padding-bottom: 10px;
 }

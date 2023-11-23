@@ -10,11 +10,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Home</title>
         <link rel="stylesheet" href="../static/css/reset.css">
-        <link rel="stylesheet" href="../static/css/index.css">
+        <!-- <link rel="stylesheet" href="../static/css/index.css"> -->
     </head>
     <body>
         <?php include '../includes/header.php'; ?>
-        <div class="content">
+        <!-- <div class="content">
             <div class="box-apresentacao">
                 <fieldset class="fieldset">
                     <h1>H18 Desenvolvimentos</h1>
@@ -31,6 +31,6 @@
                 </fieldset>
             </div>
         </div>
-        <?php include '../includes/footer.php'; ?>
+        <?php include '../includes/footer.php'; ?> -->
     </body>
 </html>
