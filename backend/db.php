@@ -49,7 +49,9 @@
             venda DECIMAL(10, 2),
             lucro DECIMAL(10, 2),
             custoEstoque DECIMAL(10, 2),
-            empresa VARCHAR(45)
+            empresa VARCHAR(45),
+            data DATE,
+            hora TIME
         )";
 
         if ($db->query($sqlCreateTableProdutos) === FALSE) {

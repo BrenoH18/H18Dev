@@ -15,13 +15,18 @@
         $lucro = $venda-$custo;
         $custoEstoque = $qtd*$custo;
         $empresa = $_POST['empresa'];
+        
+        //seta fuso horário de brasília e pega data e hora separadas
+        date_default_timezone_set('America/Sao_Paulo');
+        $data = DATE("Y-m-d");
+        $hora = DATE("H:i:s");
 
         $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
         $referencia_exists_query = mysqli_query($db, "SELECT * FROM $tabela WHERE referencia='$referencia'");
         if (mysqli_num_rows($referencia_exists_query) > 0) {
             header('Location: ../templates/cadastro-produtos.php?alert=referencia_alert&mensagem=Esta referência já está cadastrada em outro produto. Por favor, escolha outra referência!');
         }else{
-            $result = mysqli_query($db, "INSERT INTO $tabela ( referencia, descricao, modelo, marca, fornecedor, qtd, custo, venda, lucro, custoEstoque, empresa) VALUES ( '$referencia', '$descricao', '$modelo', '$marca', '$fornecedor', '$qtd', '$custo', '$venda', '$lucro', '$custoEstoque', '$empresa')");
+            $result = mysqli_query($db, "INSERT INTO $tabela ( referencia, descricao, modelo, marca, fornecedor, qtd, custo, venda, lucro, custoEstoque, empresa, data, hora) VALUES ( '$referencia', '$descricao', '$modelo', '$marca', '$fornecedor', '$qtd', '$custo', '$venda', '$lucro', '$custoEstoque', '$empresa', '$data', '$hora')");
     
             $email = $_SESSION['email'];
     
