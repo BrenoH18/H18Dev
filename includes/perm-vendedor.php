@@ -7,6 +7,6 @@
         $email = $_SESSION['email'];
     }else{
         $permissao = false;
-        header("Location: ../index.php?id=$user_data[id]");
+        header("Location: ../templates/index.php?id=$user_data[id]");
     }
 ?>

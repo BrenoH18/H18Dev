@@ -15,7 +15,7 @@
             $_SESSION['logado'] = true;
             $_SESSION['email'] = $email;
 
-            header("Location: ../index.php?id=$user_data[id]");
+            header("Location: ../templates/index.php?id=$user_data[id]");
         }else{
             $_SESSION['logado'] = false;
             header('Location: ../templates/login.php?alert=login_alert&mensagem=Email ou senha incorretos, tente novamente!');
