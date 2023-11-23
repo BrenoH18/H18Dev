@@ -7,11 +7,11 @@
             echo"<ul>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/gestao-empresas.php?id=$id&tipo=todos' class='nav-link'>Gestão de empresas</a>
+                        <a href='../templates/usuarios.php?id=$id' class='nav-link'>Usuários</a>
                     </li>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/compras.php?id=$id'  class='nav-link'>Reposição</a>
+                        <a href='../templates/reposicao.php?id=$id'  class='nav-link'>Reposição</a>
                     </li>";
                 echo 
                     "<li class='nav-item'>
