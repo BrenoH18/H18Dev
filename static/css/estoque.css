@@ -42,7 +42,7 @@ tr{
 }
 td, th{
     border: 2px solid white;
-    padding: 8px;
+    padding: 5px;
 }
 thead th{
     border-bottom: 2px solid white;
