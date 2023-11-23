@@ -1,11 +1,11 @@
 .content{
     display: flex;
     align-items: center;
-    padding: 1% 10% 0 10%;
+    height: 87%;
 }
 .fieldset{
     padding: 1%;
-    margin: 0 10% 1% 10%;
+    margin: 0 15% 0 15%;
 }
 .box-apresentacao h1{
     text-align: center;

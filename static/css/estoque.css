@@ -1,20 +1,14 @@
-body{
-    min-height: 100vh;
-}
-a{
-    color: white;
-}
 .content{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 2.5% 0 1% 0;
+    padding: 2% 0 1% 0;
+    height: 81%;
 }
 .table-bg{
-    margin-top: 3%;
+    margin-top: 2%;
     text-align: center;
-    height: max-content;
     width: 1200px;
     color: white;
     padding: 10px;
@@ -47,14 +41,17 @@ tr{
     background-image:linear-gradient(to bottom, rgba(2, 18, 141, 0.5), rgba(1, 9, 70, 0.5));
 }
 td, th{
-border: 2px solid white;
-padding: 8px;
+    border: 2px solid white;
+    padding: 8px;
 }
 thead th{
-border-bottom: 2px solid white;
+    border-bottom: 2px solid white;
 }
 tbody td{
-border-top: 2px solid white;
+    border-top: 2px solid white;
+}
+a{
+    color: white;
 }
 a.btn{
     margin: 3px;
@@ -125,31 +122,3 @@ input::placeholder {
     font-size: large;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-footer{
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: auto;
-    padding: 5px;
-    color: gray;
-}
-select#idioma{
-    background: none;
-    color: gray;
-}
-select#idioma:focus{
-    outline: none;
-}
