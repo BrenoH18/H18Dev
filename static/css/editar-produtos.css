@@ -1,6 +1,7 @@
 .content{
     display: flex;
     align-items: center;
+    min-height: 87%;
 }
 .form{
     width: 100%;
@@ -65,43 +66,4 @@ input::placeholder {
     transition: 0.4s;
     background-color: rgb(0, 153, 255, 0.7);
     color: rgba(255, 255, 255, 0.7);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-footer{
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    margin-top: auto;
-    padding: 5px;
-    color: gray;
-}
-select#idioma{
-    background: none;
-    color: gray;
-}
-select#idioma:focus{
-    outline: none;
 }

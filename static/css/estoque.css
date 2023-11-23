@@ -4,7 +4,7 @@
     align-items: center;
     text-align: center;
     padding: 2% 0 1% 0;
-    height: 81%;
+    min-height: 81%;
 }
 .table-bg{
     margin-top: 2%;
