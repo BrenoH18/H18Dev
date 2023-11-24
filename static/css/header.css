@@ -1,12 +1,12 @@
 header {
     background-color: rgb(1, 9, 70);
-    box-shadow: 0px 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 0rem .1875rem .625rem rgba(0,0,0,0.5);
 }
 
 .nav-bar {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: .625rem .625rem;
 }
 
 .logo {
@@ -28,12 +28,12 @@ header {
 }
 
 .nav-item {
-    margin: 0 15px;
+    margin: 0 1rem;
 }
 
 .nav-link {
     text-decoration: none;
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: white;
     font-weight: 400;
 }
@@ -41,8 +41,8 @@ header {
 .sair-button button {
     border: none;
     background-color: white;
-    padding: 7px 10px;
-    border-radius: 5px;
+    padding: .3125rem .625rem;
+    border-radius: .3125rem;
 }
 
 .sair-button a {
@@ -107,12 +107,12 @@ header {
 
     .mobile-menu .nav-item {
         display: block;
-        padding-top: 1.2rem;
+        padding-top: 1.25rem;
     }
     
     .mobile-menu .sair-button {
         display: block;
-        padding: 1rem 2rem;
+        padding: 1rem 1rem;
     }
 
     .mobile-menu .sair-button button {
