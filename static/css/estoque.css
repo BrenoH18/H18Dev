@@ -4,7 +4,11 @@
     align-items: center;
     text-align: center;
     padding: 2% 0 1% 0;
-    min-height: 81%;
+    height: 81%;
+}
+
+.box{
+    overflow: auto;
 }
 
 .box-search{
@@ -54,10 +58,6 @@
     color: white;
     background: none;
     font-size: large;
-}
-
-.box{
-    overflow: auto;
 }
 
 .table-bg{
