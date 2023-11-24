@@ -13,6 +13,7 @@ header {
     display: flex;
     align-items: center;
     color: white;
+    cursor: default;
 }
 
 .nav-list {
@@ -40,14 +41,14 @@ header {
 .sair-button button {
     border: none;
     background-color: white;
-    padding: 10px 15px;
+    padding: 7px 10px;
     border-radius: 5px;
 }
 
 .sair-button a {
     text-decoration: none;
     color: rgb(1, 9, 70);
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.1rem;
 }
 

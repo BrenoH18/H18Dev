@@ -46,6 +46,7 @@ input::placeholder {
     font-weight: bold;
     height: 40px;
     font-size: 20px;
+    cursor: pointer;
 }
 .inputSubmit:hover{
     transition: 0.4s;
@@ -61,6 +62,7 @@ input::placeholder {
     height: 40px;
     font-size: 20px;
     background-color: rgb(0, 153, 255);
+    cursor: pointer;
 }
 .btn-voltar:hover{
     transition: 0.4s;
