@@ -11,6 +11,10 @@
                     </li>";
                 echo 
                     "<li class='nav-item'>
+                        <a href='../templates/caixa.php?id=$id' class='nav-link'>Caixa</a>
+                    </li>";
+                echo 
+                    "<li class='nav-item'>
                         <a href='../templates/reposicao.php?id=$id'  class='nav-link'>Reposição</a>
                     </li>";
                 echo 
@@ -31,6 +35,10 @@
                 // echo 
                 //     "<li class='nav-item'>
                 //         <a href='../templates/compras.php?id=$id'  class='nav-link'>Reposição</a>
+                //     </li>";
+                // echo 
+                //     "<li class='nav-item'>
+                //         <a href='../templates/caixa.php?id=$id' class='nav-link'>Caixa</a>
                 //     </li>";
                 echo 
                     "<li class='nav-item'>
