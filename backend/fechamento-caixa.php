@@ -24,14 +24,14 @@
         // Verificar se o email já está registrado no banco de dados
         $email_exists_query = mysqli_query($db, "SELECT * FROM usuarios WHERE email='$email'");
         
-        $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa'";
+        $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa' and statusCaixa = 'A'";
         $resultStatus = $db->query($sqlStatus) or die($db->error);
         $status_caixa = mysqli_fetch_assoc($resultStatus);
 
-        if (!isset($status_caixa)){
+        if (!isset($status_caixa['statusCaixa'])){
             header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!');
         }else{
-            if (mysqli_num_rows($email_exists_query) > 0 && $status_caixa['statusCaixa'] != 'F') {
+            if (mysqli_num_rows($email_exists_query) > 0 && $status_caixa['statusCaixa'] == 'A') {
                 $result = mysqli_query($db, "UPDATE $tabelaCaixa SET statusCaixa='$status'");
                 header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Caixa Fechado com sucesso!');
             }else{
@@ -39,15 +39,4 @@
             }
         }
     }
-
-        // if (!isset($status_caixa)){
-        //  header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!');
-        // }else{
-        //     if (mysqli_num_rows($email_exists_query) > 0 && $status_caixa['statusCaixa'] == 'A') {
-        //         $result = mysqli_query($db, "UPDATE $tabelaCaixa SET statusCaixa='$status'");
-        //         header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Caixa Fechado com sucesso!');
-        //     }else{
-        //         header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!');
-        //     }
-        // }
 ?>

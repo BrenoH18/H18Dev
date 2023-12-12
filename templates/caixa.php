@@ -10,7 +10,7 @@
     $empresa = $user_data['empresa'];
     
     $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
-    $sqlCaixa = "SELECT * FROM $tabelaCaixa WHERE empresa = '$empresa'";
+    $sqlCaixa = "SELECT * FROM $tabelaCaixa WHERE empresa = '$empresa' and statusCaixa = 'A'";
     $sqlCaixa_result = $db->query($sqlCaixa);
     $caixaData = mysqli_fetch_assoc($sqlCaixa_result);
     
@@ -82,9 +82,13 @@
             </div>
             <div>
                 <?php 
-                    if ($status_caixa['statusCaixa'] == 'A'){
-                        echo 'Saldo inicial: '.'R$'.$saldoInicial.'<br>';
-                        echo 'Saldo: '.'R$'.$saldo;
+                    if (isset($status_caixa['statusCaixa'])){
+                        if ($status_caixa['statusCaixa'] == 'A'){
+                            echo 'Saldo inicial: '.'R$'.$saldoInicial.'<br>';
+                            echo 'Saldo: '.'R$'.$saldo;
+                        }else{
+                            echo 'Não há nenhum caixa em aberto!';
+                        }
                     }else{
                         echo 'Não há nenhum caixa em aberto!';
                     }
