@@ -1,0 +1,20 @@
+.content {
+    min-height: 87%;
+}
+
+.tool-bar {
+    display: flex;
+    background-color: rgb(1, 9, 70, 0.8);
+    text-align: center;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+}
+
+.tool-bar button {
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+    border: none;
+    background: none;
+}

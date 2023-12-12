@@ -12,7 +12,7 @@
     if ($db->connect_error) {
         die("Conexão falhou: " . $db->connect_error);
     }
-
+    
     $email = $_SESSION['email'];
 
     $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
@@ -35,9 +35,9 @@
     }
 
     //SQL para criar tabela produtos
-    $tabela = "produtos_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
-    if($tabela != 'produtos_'){
-        $sqlCreateTableProdutos = "CREATE TABLE IF NOT EXISTS $tabela (
+    $tabelaProdutos = "produtos_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
+    if($tabelaProdutos != 'produtos_'){
+        $sqlCreateTableProdutos = "CREATE TABLE IF NOT EXISTS $tabelaProdutos (
             id INT AUTO_INCREMENT PRIMARY KEY,
             referencia VARCHAR(45),
             descricao VARCHAR(45),
@@ -72,4 +72,23 @@
     if ($db->query($sqlCreateTableSolicitaRedefinirSenha) === FALSE) {
         echo "Erro ao criar a tabela: " . $db->error;
     }
+    
+   //SQL para criar tabela caixa
+   $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
+   if($tabelaCaixa != 'caixa_'){
+       $sqlCreateTableCaixa = "CREATE TABLE IF NOT EXISTS $tabelaCaixa (
+           id INT AUTO_INCREMENT PRIMARY KEY,
+           usuario VARCHAR(45),
+           empresa VARCHAR(45),
+           saldoInicial INT(45),
+           saldo INT(45),   
+           dataAtual DATE,
+           horaAtual TIME
+       )";
+
+       if ($db->query($sqlCreateTableCaixa) === FALSE) {
+           echo "Erro ao criar a tabela: " . $db->error;
+       }
+
+   }
 ?>  

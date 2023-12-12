@@ -23,6 +23,9 @@
             }elseif($alert == 'referencia_alert'){
                 echo "<script>alert('$mensagem');</script>";
                 echo "<meta http-equiv='refresh' content='0;url=cadastro-produtos.php?id=$'>";
+            }elseif($alert == 'caixa_alert'){
+                echo "<script>alert('$mensagem');</script>";
+                echo "<meta http-equiv='refresh' content='0;url=caixa.php?id=$id'>";
             }
         }
     ?>
