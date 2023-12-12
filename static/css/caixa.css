@@ -1,0 +1,21 @@
+.content {
+    min-height: 87%;
+}
+
+.tool-bar-caixa {
+    padding: .625rem;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgba(1, 9, 70, 0.8);
+    cursor: default;
+}
+
+.tool-bar-caixa a {
+    text-decoration: none;
+    border: none;
+    background: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+}

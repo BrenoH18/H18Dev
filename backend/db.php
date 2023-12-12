@@ -19,6 +19,9 @@
     $result = $db->query($sql) or die($db->error);
     $user_data = mysqli_fetch_assoc($result);
 
+    $dataAtual = DATE("Y-m-d");
+    $horaAtual = DATE("H:i:s");
+
     // SQL para criar a tabela usuarios
     $sqlCreateTableUsuario = "CREATE TABLE IF NOT EXISTS usuarios (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -71,5 +74,20 @@
 
     if ($db->query($sqlCreateTableSolicitaRedefinirSenha) === FALSE) {
         echo "Erro ao criar a tabela: " . $db->error;
+    }
+
+    // SQL para criar tabela produtos
+    $tabela = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
+    if($tabela != 'caixa_'){
+        $sqlCreateTableCaixa = "CREATE TABLE IF NOT EXISTS $tabela (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            valor VARCHAR(45),
+            dataAtual DATE,
+            horaAtual TIME
+        )";
+
+        if ($db->query($sqlCreateTableCaixa) === FALSE) {
+            echo "Erro ao criar a tabela: " . $db->error;
+        }
     }
 ?>  

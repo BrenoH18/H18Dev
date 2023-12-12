@@ -11,6 +11,7 @@
         <title>H18 Dev | Home</title>
         <link rel="stylesheet" href="../static/css/reset.css">
         <link rel="stylesheet" href="../static/css/index.css">
+        
     </head>
     <body>
         <?php include '../includes/header.php'; ?>

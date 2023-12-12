@@ -11,6 +11,10 @@
                     </li>";
                 echo 
                     "<li class='nav-item'>
+                        <a href='../templates/caixa.php?id=$id' class='nav-link'>Caixa</a>
+                    </li>";
+                echo 
+                    "<li class='nav-item'>
                         <a href='../templates/reposicao.php?id=$id'  class='nav-link'>Reposição</a>
                     </li>";
                 echo 
@@ -35,6 +39,10 @@
                 echo 
                     "<li class='nav-item'>
                         <a href='../templates/estoque.php?empresa=<?php echo $empresa?>&tipo=todos' class='nav-link'>Estoque</a>
+                    </li>";
+                echo 
+                    "<li class='nav-item'>
+                        <a href='../templates/caixa.php?id=$id' class='nav-link'>Caixa</a>
                     </li>";
                 // echo 
                 //     "<li class='nav-item'>
@@ -67,6 +75,7 @@
 <html lang="pt-br">
     <head>
         <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../static/css/login.css">
     </head>
     <body>
         <header>
@@ -80,9 +89,7 @@
 
                 <div class="sair-button">
                     <button>
-                        <a href="../backend/sair.php">
-                            Sair
-                        </a>
+                        <a onclick="mostrarLogin()">Sair</a>
                     </button>
                 </div>
 
@@ -113,6 +120,29 @@
                 </div>
             </div>
         </header>
+        <div id="overlay"></div>
+            <div id="popup">
+                <div class="box-login">
+                    <fieldset class="fieldset">
+                        <h1 class="h1" id="h1-login">H18 Dev</h1>
+                        <h2 class="h2" id="slogan">Transformando visões em realidade!</h2>
+                        <form action="../backend/autenticacao.php" method="POST" class="form" id="form">
+                            <input type="email" name="email" placeholder="Email" class="inputUser" required><br>
+                            <input type="password" name="senha" placeholder="Senha" id="senha" class="inputUser" required><br>
+                            <input type="submit" name="submit" value="Entrar" class="inputSubmit">
+                        </form>
+                        <p>Esqueceu a senha? <a class="btn" href="solic-rec.php">Redefina aqui</a></p>
+                    </fieldset>
+                </div>
+                <div class="box-btn-cadastro">
+                    <fieldset class="fieldset" id="fieldset-btn-cadastro">
+                        <span>
+                            <p>Não tem uma conta? <a href="cadastro.php" class="btn-cadastro">Cadastre-se</a></p>
+                        </span>
+                    </fieldset>
+                </div>
+            </div>
         <script src="../static/js/menuShow.js"></script>
+        <script src="../static/js/popup-login.js"></script>
     </body>
 </html>

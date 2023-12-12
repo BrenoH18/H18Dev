@@ -6,7 +6,7 @@ header {
 .nav-bar {
     display: flex;
     justify-content: space-between;
-    padding: .625rem .625rem;
+    padding: .625rem;
 }
 
 .logo {
