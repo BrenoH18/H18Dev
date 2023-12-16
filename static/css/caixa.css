@@ -1,13 +1,14 @@
 .content {
-    min-height: 87%;
+    height: 89vh;
 }
 
 .tool-bar {
     display: flex;
-    background-color: rgb(1, 9, 70, 0.8);
+    background-color: rgba(1, 9, 70, 0.8);
     text-align: center;
     justify-content: space-evenly;
     padding: 0.5rem;
+    box-shadow: 0rem .1875rem .625rem rgba(0,0,0,0.5);
 }
 
 .tool-bar button {
@@ -20,9 +21,43 @@
 }
 .barra-saldo {
     display: flex;
-    background-color: rgb(1, 9, 70, 0.7);
+    background-color: rgba(1, 9, 70, 0.8);
     text-align: center;
     justify-content: space-between;
     padding: 0.5rem;
     color: white;
+    box-shadow: 0rem .1875rem .625rem rgba(0,0,0,0.5);
+}
+
+.inputSubmit {
+    cursor: pointer;
+}
+
+.inputSubmitCancelar {
+    cursor: pointer;
+}
+
+.movimentacoes {
+    height: 89%;
+}
+
+.table-mov {
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.table-mov thead {
+    background-color: rgba(1, 9, 70, 0.7);
+}
+
+.table-mov tbody {
+    background-color: rgba(1, 9, 70, 0.5);
+}
+
+td, th{
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
 }

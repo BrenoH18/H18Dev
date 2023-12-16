@@ -1,4 +1,4 @@
-#popup-fechar-caixa {
+#popup-adicionar-mov {
     display: none;
     position: fixed;
     top: 50%;
@@ -11,7 +11,7 @@
     z-index: 9999;
     text-align: center;
 }
-#popup-fechar-caixa h2 {
+#popup-adicionar-mov h2 {
     font-size: 2rem;
     font-weight: 800;
 }

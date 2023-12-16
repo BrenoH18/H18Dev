@@ -12,7 +12,7 @@
         $result = $db->query($sql) or die($db->error);
         $user_data = mysqli_fetch_assoc($result);
         
-        if (password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email and ($user_data['permissao'] == 'administrador' or $user_data['permissao'] == 'desenvolvedor')) {
+        if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'administrador' or $user_data['permissao'] == 'desenvolvedor')) {
 
             $saldoInicial = $_POST['saldoInicial'];
             $status = 'A';
@@ -38,10 +38,10 @@
                 header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=O caixa já se encontra aberto!');
             }
 
-        }else{
-            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Email ou senha incorretos, tente novamente!');
+        }elseif ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] != $email) or ($user_data['permissao'] != 'administrador' and $user_data['permissao'] != 'desenvolvedor')) {
+            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!');
         }
     }else{
-        header('Location: ../templates/caixa.php?alert=login_alert&mensagem=Erro desconhecido!');
+        header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe $_POST[submit]!');
     }
 ?>

@@ -12,7 +12,7 @@
         $result = $db->query($sql) or die($db->error);
         $user_data = mysqli_fetch_assoc($result);
 
-        if(password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email){
+        if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'administrador' or $user_data['permissao'] == 'desenvolvedor')) {
             $status = 'F';
 
             $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
@@ -38,16 +38,19 @@
             }else{
                 if (mysqli_num_rows($email_exists_query) > 0 && $status_caixa['statusCaixa'] == 'A') {
                     $result = mysqli_query($db, "UPDATE $tabelaCaixa SET statusCaixa='$status'");
+
+                    $result2 = mysqli_query($db, "UPDATE $tabelaMov SET statusCaixa='$status'");
+
                     header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Caixa Fechado com sucesso!');
                 }else{
                     header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!');
                 }
             }
        
-        }else{
-            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Email ou senha incorretos, tente novamente!');
+        }elseif ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] != $email) or ($user_data['permissao'] != 'administrador' and $user_data['permissao'] != 'desenvolvedor')) {
+            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!');
         }
     }else{
-        header('Location: ../templates/caixa.php?alert=login_alert&mensagem=Erro desconhecido!');
+        header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe $_POST[submit]!');
     }
 ?>

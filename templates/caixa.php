@@ -18,31 +18,31 @@
         $saldoInicial = number_format($caixaData['saldoInicial'], 2, ',', '.');
         $totalMov = number_format($caixaData['totalMov'], 2, ',', '.');
         $saldo = number_format($caixaData['saldoInicial']+$caixaData['totalMov'], 2, ',', '.');
+        $idCaixa = $caixaData['id'];
     }else{
         $saldoInicial = number_format(0, 2);
         $totalMov = number_format(0, 2);
         $saldo = number_format(0, 2);
+        $idCaixa = '0';
     }
 
-    $dataAtual = DATE('Y-m-d');
+    //seta fuso horário de brasília e pega data e hora separadas
+    date_default_timezone_set('America/Sao_Paulo');
+    $dataAtual = DATE("Y-m-d");
+    $horaAtual = DATE("H:i:s");
 
     $tabelaMov = "movimentacoes_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
-    $sqlMov = "SELECT * FROM $tabelaMov WHERE empresa = '$empresa' and dataMov = $dataAtual";
+    $sqlMov = "SELECT * FROM $tabelaMov WHERE empresa = '$empresa' AND dataMov = '$dataAtual' AND idCaixa = $idCaixa ORDER BY id ASC";
     $sqlMov_result = $db->query($sqlMov);
-    $movData = mysqli_fetch_assoc($sqlMov_result);
 
-    $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa'";
+    $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa' AND statusCaixa = 'A'";
     $resultStatus = $db->query($sqlStatus) or die($db->error);
     $status_caixa = mysqli_fetch_assoc($resultStatus);
 
     if(!isset($status_caixa)){
         $status = 'Fechado';
     }else{
-        if($status_caixa['statusCaixa'] == 'A'){
-            $status = 'Aberto';
-        }elseif($status_caixa['statusCaixa'] == 'F'){
-            $status = 'Fechado';
-        }
+        $status = 'Aberto';
     }
 
 ?>
@@ -56,11 +56,12 @@
         <link rel="stylesheet" href="../static/css/caixa.css">
         <link rel="stylesheet" href="../static/css/abrir-caixa.css">
         <link rel="stylesheet" href="../static/css/fechar-caixa.css">
+        <link rel="stylesheet" href="../static/css/adicionar-mov.css">
         <script src="../static/js/popup.js"></script>
     </head>
     <body>
         <?php include '../includes/header.php';?>
-        <div id="overlay-abrir-caixa"></div>
+        <div id="overlay"></div>
         <div id="popup-abrir-caixa">
             <h2>Abertura de Caixa</h2>
             <form action="../backend/abertura-caixa.php" method="POST" class="form" id="form">
@@ -71,7 +72,17 @@
             </form>
             <input type="submit" value="Cancelar" class="inputSubmitCancelar" onclick="closePopupAbrirCaixa()">
         </div>
-        <div id="overlay-fechar-caixa"></div>
+        <div id="popup-adicionar-mov">
+            <h2>Adicionar Movimentação</h2><br><br>
+            <form action="../backend/adicionar-mov.php" method="POST" class="form" id="form">
+                <input type="email" name="email" id="email" placeholder="Email" class="inputUser" required><br><br>
+                <input type="password" name="senha" id="senha" placeholder="Senha" class="inputUser" required><br><br>
+                <input type="text" name="descMov" id="descMov" placeholder="Descrição" class="inputUser" required><br><br>
+                <input type="number" step="0.01" name="valorMov" id="valorMov" placeholder="Valor" class="inputUser" required><br><br>
+                <input type="submit" name="submit" id="submit" value="Confirmar" class="inputSubmit">
+            </form>
+            <input type="submit" value="Cancelar" class="inputSubmitCancelar" onclick="closePopupAdicionarMov()">
+        </div>
         <div id="popup-fechar-caixa">
             <h2>Fechamento de Caixa</h2>
             <form action="../backend/fechamento-caixa.php" method="POST" class="form" id="form">
@@ -87,22 +98,47 @@
         <div class="content">
             <div class="tool-bar">
                 <button onclick="openPopupAbrirCaixa()">Abrir Caixa</button>
-                <button>Entrada</button>
-                <button>Retirada</button>
+                <button onclick="openPopupAdicionarMov()">Adicionar</button>
+                <button>Retirar</button>
                 <button onclick="openPopupFecharCaixa()">Fechar Caixa</button>
             </div>
-            <div>
-                <?php 
-                    echo "<div class='barra-saldo'>";
-                        echo "<p>Saldo inicial: R$$saldoInicial</p>";
-                        echo "<p>Movimentações: R$$totalMov</p>";
-                        echo "<p>Saldo: R$$saldo</p>";
-                        echo "<p>Status: $status</p>";
-                    echo "</div>";
-                ?>
+            <div class="movimentacoes">
+                <table class="table-mov">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Usuário</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            while($movData = mysqli_fetch_assoc($sqlMov_result)){
+                                echo "<tr>";
+                                    echo "<td>".$movData['id']."</td>";
+                                    echo "<td>".$movData['usuario']."</td>";
+                                    echo "<td>".$movData['descMov']."</td>";
+                                    echo "<td>".'R$'.number_format($movData['valorMov'], 2, ',', '.')."</td>";
+                                    echo "<td>".$movData['dataMov']."</td>";
+                                    echo "<td>".$movData['horaMov']."</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
+            <?php 
+                echo "<div class='barra-saldo'>";
+                    echo "<p>Saldo inicial: R$$saldoInicial</p>";
+                    echo "<p>Movimentações: R$$totalMov</p>";
+                    echo "<p>Saldo: R$$saldo</p>";
+                    echo "<p>Status: $status</p>";
+                echo "</div>";
+            ?>
         </div>
-       
         <?php include '../includes/footer.php'; ?>
     </body>
 </html>

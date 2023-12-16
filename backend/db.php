@@ -93,7 +93,7 @@
         }
    }
 
-    //SQL para criar tabela caixa
+    //SQL para criar tabela movimentações
     $tabelaMov = "movimentacoes_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
     if($tabelaMov != 'movimentacoes_'){
         $sqlCreateTableMov = "CREATE TABLE IF NOT EXISTS $tabelaMov (
@@ -103,7 +103,9 @@
             descMov VARCHAR(45),
             valorMov FLOAT(11),
             dataMov DATE,
-            horaMov TIME
+            horaMov TIME,
+            idCaixa VARCHAR(45),
+            statusCaixa VARCHAR(45)
         )";
 
     if ($db->query($sqlCreateTableMov) === FALSE) {
