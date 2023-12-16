@@ -29,6 +29,12 @@
             // Verificar se o email já está registrado no banco de dados
             $email_exists_query = mysqli_query($db, "SELECT * FROM usuarios WHERE email='$email'");
             
+            $dbName = "db_" . strtolower(str_replace(' ', '_', $empresa));
+            $db = new mysqli($dbhost, $dbUsername, $dbPassword, $dbName);
+
+            $tabelaCaixa = "caixa";
+            $tabelaMov = "movimentacoes";
+            
             $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa' and statusCaixa = 'A'";
             $resultStatus = $db->query($sqlStatus) or die($db->error);
             $status_caixa = mysqli_fetch_assoc($resultStatus);

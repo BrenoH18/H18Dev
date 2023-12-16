@@ -8,8 +8,11 @@
     if(!empty($_GET['empresa'])){
 
         $empresa = $user_data['empresa'];
-        $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
+        $tabela = "produtos";
         $tipo = $_GET['tipo'];
+
+        $dbName = "db_" . strtolower(str_replace(' ', '_', $empresa));
+        $db = new mysqli($dbhost, $dbUsername, $dbPassword, $dbName);
 
         if(!empty($_GET['search'])){
             $value_pesquisa = $_GET['search'];
