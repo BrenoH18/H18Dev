@@ -36,10 +36,10 @@
                 //     "<li class='nav-item'>
                 //         <a href='../templates/compras.php?id=$id'  class='nav-link'>Reposição</a>
                 //     </li>";
-                // echo 
-                //     "<li class='nav-item'>
-                //         <a href='../templates/caixa.php?id=$id' class='nav-link'>Caixa</a>
-                //     </li>";
+                echo 
+                    "<li class='nav-item'>
+                        <a href='../templates/caixa.php?id=$id' class='nav-link'>Caixa</a>
+                    </li>";
                 echo 
                     "<li class='nav-item'>
                         <a href='../templates/estoque.php?empresa=<?php echo $empresa?>&tipo=todos' class='nav-link'>Estoque</a>
