@@ -15,10 +15,12 @@
     $caixaData = mysqli_fetch_assoc($sqlCaixa_result);
 
     if (isset($caixaData['saldoInicial'])){
-        $saldoInicial = number_format($caixaData['saldoInicial'], 2);
-        $saldo = number_format($caixaData['saldo'], 2);
+        $saldoInicial = number_format($caixaData['saldoInicial'], 2, ',', '.');
+        $totalMov = number_format($caixaData['totalMov'], 2, ',', '.');
+        $saldo = number_format($caixaData['saldoInicial']+$caixaData['totalMov'], 2, ',', '.');
     }else{
         $saldoInicial = number_format(0, 2);
+        $totalMov = number_format(0, 2);
         $saldo = number_format(0, 2);
     }
 
@@ -29,24 +31,19 @@
     $sqlMov_result = $db->query($sqlMov);
     $movData = mysqli_fetch_assoc($sqlMov_result);
 
-    $consulta = "SELECT SUM(valorMov) as total FROM $tabelaMov WHERE dataMov = $dataAtual";
-    $resultado = $db->query($consulta);
-    if ($resultado) {
-        $linha = $resultado->fetch_assoc();
-        $movTotal = $linha['total'];
-    } else {
-        $movTotal = $linha['total'];
-    }
-
-    if(isset($movData['valorMov']) and isset($caixaData['saldoInicial'])){
-        $movTotal = $linha['total'];
-    }else{
-        $movTotal = number_format(0, 2);
-    }
-
-    $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa' and statusCaixa = 'A'";
+    $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa'";
     $resultStatus = $db->query($sqlStatus) or die($db->error);
     $status_caixa = mysqli_fetch_assoc($resultStatus);
+
+    if(!isset($status_caixa)){
+        $status = 'Fechado';
+    }else{
+        if($status_caixa['statusCaixa'] == 'A'){
+            $status = 'Aberto';
+        }elseif($status_caixa['statusCaixa'] == 'F'){
+            $status = 'Fechado';
+        }
+    }
 
 ?>
 
@@ -96,17 +93,12 @@
             </div>
             <div>
                 <?php 
-                    if (isset($status_caixa['statusCaixa'])){
-                        if ($status_caixa['statusCaixa'] == 'A'){
-                            echo "<div class='barra-saldo'>";
-                                echo "<p>Saldo inicial: R$$saldoInicial</p>";
-                                echo "<p>Total movimentações: R$$movTotal</p>";
-                                echo "<p>Saldo: R$$saldo</p>";
-                            echo "</div>";
-                        }else{
-                        }
-                    }else{
-                    }
+                    echo "<div class='barra-saldo'>";
+                        echo "<p>Saldo inicial: R$$saldoInicial</p>";
+                        echo "<p>Movimentações: R$$totalMov</p>";
+                        echo "<p>Saldo: R$$saldo</p>";
+                        echo "<p>Status: $status</p>";
+                    echo "</div>";
                 ?>
             </div>
         </div>
