@@ -73,22 +73,43 @@
         echo "Erro ao criar a tabela: " . $db->error;
     }
     
-   //SQL para criar tabela caixa
-   $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
-   if($tabelaCaixa != 'caixa_'){
-       $sqlCreateTableCaixa = "CREATE TABLE IF NOT EXISTS $tabelaCaixa (
-           id INT AUTO_INCREMENT PRIMARY KEY,
-           usuario VARCHAR(45),
-           empresa VARCHAR(45),
-           saldoInicial INT(45),
-           saldo INT(45),   
-           dataAtual DATE,
-           horaAtual TIME
-       )";
+    //SQL para criar tabela caixa
+    $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
+    if($tabelaCaixa != 'caixa_'){
+         $sqlCreateTableCaixa = "CREATE TABLE IF NOT EXISTS $tabelaCaixa (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            usuario VARCHAR(45),
+            empresa VARCHAR(45),
+            saldoInicial FLOAT(45),
+            totalMov FLOAT(45),
+            saldo FLOAT(45),   
+            dataAtual DATE,
+            horaAtual TIME,
+            statusCaixa VARCHAR(45)
+        )";
 
-       if ($db->query($sqlCreateTableCaixa) === FALSE) {
-           echo "Erro ao criar a tabela: " . $db->error;
-       }
+        if ($db->query($sqlCreateTableCaixa) === FALSE) {
+            echo "Erro ao criar a tabela: " . $db->error;
+        }
+   }
+
+    //SQL para criar tabela caixa
+    $tabelaMov = "movimentacoes_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
+    if($tabelaMov != 'movimentacoes_'){
+        $sqlCreateTableMov = "CREATE TABLE IF NOT EXISTS $tabelaMov (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            usuario VARCHAR(45),
+            empresa VARCHAR(45),
+            descMov VARCHAR(45),
+            valorMov FLOAT(11),
+            dataMov DATE,
+            horaMov TIME
+        )";
+
+    if ($db->query($sqlCreateTableMov) === FALSE) {
+        echo "Erro ao criar a tabela: " . $db->error;
+    }
+
 
    }
 ?>  
