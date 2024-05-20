@@ -8,12 +8,8 @@
     $user_data = mysqli_fetch_assoc($consult_result);
 
     $empresa = $user_data['empresa'];
-
-    $dbName = "db_" . strtolower(str_replace(' ', '_', $empresa));
-    $db = new mysqli($dbhost, $dbUsername, $dbPassword, $dbName);
     
-    $tabelaCaixa = "caixa";
-    
+    $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
     $sqlCaixa = "SELECT * FROM $tabelaCaixa WHERE empresa = '$empresa' and statusCaixa = 'A'";
     $sqlCaixa_result = $db->query($sqlCaixa);
     $caixaData = mysqli_fetch_assoc($sqlCaixa_result);
@@ -35,7 +31,7 @@
     $dataAtual = DATE("Y-m-d");
     $horaAtual = DATE("H:i:s");
 
-    $tabelaMov = "movimentacoes";
+    $tabelaMov = "movimentacoes_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
     $sqlMov = "SELECT * FROM $tabelaMov WHERE empresa = '$empresa' AND dataMov = '$dataAtual' AND idCaixa = $idCaixa ORDER BY id ASC";
     $sqlMov_result = $db->query($sqlMov);
 

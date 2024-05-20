@@ -14,12 +14,7 @@
         
         $empresa = $user_data['empresa'];
 
-        $dbName = "db_" . strtolower(str_replace(' ', '_', $empresa));
-        $db = new mysqli($dbhost, $dbUsername, $dbPassword, $dbName);
-
-        $tabelaCaixa = "caixa";
-        $tabelaMov = "movimentacoes";
-        
+        $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
         $sqlCaixa = "SELECT * FROM $tabelaCaixa WHERE empresa = '$empresa' and statusCaixa = 'A'";
         $sqlCaixa_result = $db->query($sqlCaixa);
         $caixaData = mysqli_fetch_assoc($sqlCaixa_result);
