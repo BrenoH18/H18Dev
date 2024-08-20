@@ -12,7 +12,7 @@
     if($conn){
         // Verifica se houve um erro na conexão
         if ($conn->connect_error) {
-            die("Erro de conexão com o Servidor: " . $conn->connect_error);  // Exibe mensagem de erro e termina o script
+            die("Erro ao conectar com o Servidor: " . $conn->connect_error);  // Exibe mensagem de erro e termina o script
         } else {
             // Cria o banco de dados se ele não existir
             $sqlCreateDB = "
@@ -32,20 +32,13 @@
 
             // Verifica se a conexão com o banco de dados foi bem-sucedida
             if ($db->connect_error) {
-                die("Conexão falhou: " . $db->connect_error);  // Exibe mensagem de erro e termina o script
+                die("Erro ao conectar com o Banco de Dados: " . $db->connect_error);  // Exibe mensagem de erro e termina o script
             } else {
-                // Obtém o email da sessão do usuário logado
-                $email = $_SESSION['email'];
-
-                // Executa uma consulta SQL para buscar os dados do usuário
-                $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
-                $result = $db->query($sql) or die($db->error);  // Executa a consulta ou exibe erro
-                $user_data = mysqli_fetch_assoc($result);  // Obtém os dados do usuário
 
                 // SQL para criar a tabela de usuários, se ela não existir
                 $sqlCreateTableUsuario = "
                     CREATE TABLE IF NOT EXISTS usuarios (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         nome VARCHAR(45) NOT NULL,
                         sobrenome VARCHAR(45) NOT NULL,
                         email VARCHAR(45) NOT NULL,
@@ -54,31 +47,55 @@
                         permissao VARCHAR(45) NOT NULL DEFAULT 'user'
                     )
                 ";
-
+                
                 // Executa a query para criar a tabela de usuários
                 if ($db->query($sqlCreateTableUsuario) === FALSE) {
                     die("Erro ao criar a tabela: " . $db->error);  // Exibe mensagem de erro e termina o script
                 }
+
+                // SQL para criar a tabela de solicitação de redefinição de senha, se ela não existir
+                $sqlCreateTableSolicitaRedefinirSenha = "
+                    CREATE TABLE IF NOT EXISTS solicita_redefinir_senha (
+                        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        email VARCHAR(45) NOT NULL,
+                        dataAtual DATE NOT NULL,
+                        horaAtual TIME NOT NULL,
+                        token VARCHAR(225) NOT NULL
+                    )
+                ";
+
+                // Executa a query para criar a tabela de solicitação de redefinição de senha
+                if ($db->query($sqlCreateTableSolicitaRedefinirSenha) === FALSE) {
+                    die("Erro ao criar a tabela: " . $db->error);  // Exibe mensagem de erro e termina o script
+                }
+
+                // Obtém o email da sessão do usuário logado
+                $email = $_SESSION['email'];
+
+                // Executa uma consulta SQL para buscar os dados do usuário
+                $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
+                $result = $db->query($sql) or die($db->error);  // Executa a consulta ou exibe erro
+                $user_data = mysqli_fetch_assoc($result);  // Obtém os dados do usuário
 
                 // SQL para criar a tabela de produtos, com nome baseado na empresa do usuário
                 $tabelaProdutos = "produtos_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
                 if($tabelaProdutos != 'produtos_'){
                     $sqlCreateTableProdutos = "
                         CREATE TABLE IF NOT EXISTS $tabelaProdutos (
-                            id INT AUTO_INCREMENT PRIMARY KEY,
-                            referencia VARCHAR(45),
-                            descricao VARCHAR(45),
-                            modelo VARCHAR(45),
-                            marca VARCHAR(45),
-                            fornecedor VARCHAR(45),
-                            qtd INT,
-                            custo DECIMAL(10, 2),
-                            venda DECIMAL(10, 2),
-                            lucro DECIMAL(10, 2),
-                            custoEstoque DECIMAL(10, 2),
-                            empresa VARCHAR(45),
-                            data DATE,
-                            hora TIME
+                            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            referencia VARCHAR(45) NOT NULL,
+                            descricao VARCHAR(45) NOT NULL,
+                            modelo VARCHAR(45) NOT NULL,
+                            marca VARCHAR(45) NOT NULL,
+                            fornecedor VARCHAR(45) NOT NULL,
+                            qtd INT NOT NULL,
+                            custo DECIMAL(10, 2) NOT NULL,
+                            venda DECIMAL(10, 2) NOT NULL,
+                            lucro DECIMAL(10, 2) NOT NULL,
+                            custoEstoque DECIMAL(10, 2) NOT NULL,
+                            empresa VARCHAR(45) NOT NULL,
+                            data DATE NOT NULL,
+                            hora TIME NOT NULL
                         )
                     ";
 
@@ -88,36 +105,20 @@
                     }
                 }
 
-                // SQL para criar a tabela de solicitação de redefinição de senha, se ela não existir
-                $sqlCreateTableSolicitaRedefinirSenha = "
-                    CREATE TABLE IF NOT EXISTS solicita_redefinir_senha (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-                        email VARCHAR(45),
-                        dataAtual DATE,
-                        horaAtual TIME,
-                        token VARCHAR(225)
-                    )
-                ";
-
-                // Executa a query para criar a tabela de solicitação de redefinição de senha
-                if ($db->query($sqlCreateTableSolicitaRedefinirSenha) === FALSE) {
-                    die("Erro ao criar a tabela: " . $db->error);  // Exibe mensagem de erro e termina o script
-                }
-
                 // SQL para criar a tabela de caixa, com nome baseado na empresa do usuário
                 $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
                 if($tabelaCaixa != 'caixa_'){
                     $sqlCreateTableCaixa = "
                         CREATE TABLE IF NOT EXISTS $tabelaCaixa (
-                            id INT AUTO_INCREMENT PRIMARY KEY,
-                            usuario VARCHAR(45),
-                            empresa VARCHAR(45),
-                            saldoInicial FLOAT(45),
-                            totalMov FLOAT(45),
-                            saldo FLOAT(45),   
-                            dataAtual DATE,
-                            horaAtual TIME,
-                            statusCaixa VARCHAR(45)
+                            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            usuario VARCHAR(45) NOT NULL,
+                            empresa VARCHAR(45) NOT NULL,
+                            saldoInicial FLOAT(45) NOT NULL,
+                            totalMov FLOAT(45) NOT NULL,
+                            saldo FLOAT(45) NOT NULL,   
+                            dataAtual DATE NOT NULL,
+                            horaAtual TIME NOT NULL,
+                            statusCaixa VARCHAR(45) NOT NULL
                         )
                     ";
 
@@ -132,15 +133,15 @@
                 if($tabelaMov != 'movimentacoes_'){
                     $sqlCreateTableMov = "
                         CREATE TABLE IF NOT EXISTS $tabelaMov (
-                            id INT AUTO_INCREMENT PRIMARY KEY,
-                            usuario VARCHAR(45),
-                            empresa VARCHAR(45),
-                            descMov VARCHAR(45),
-                            valorMov FLOAT(11),
-                            dataMov DATE,
-                            horaMov TIME,
-                            idCaixa VARCHAR(45),
-                            statusCaixa VARCHAR(45)
+                            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            usuario VARCHAR(45) NOT NULL,
+                            empresa VARCHAR(45) NOT NULL,
+                            descMov VARCHAR(45) NOT NULL,
+                            valorMov FLOAT(11) NOT NULL,
+                            dataMov DATE NOT NULL,
+                            horaMov TIME NOT NULL,
+                            idCaixa VARCHAR(45) NOT NULL,
+                            statusCaixa VARCHAR(45) NOT NULL
                         )
                     ";
 

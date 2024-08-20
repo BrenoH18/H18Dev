@@ -6,10 +6,13 @@
     $id = $user_data['id'];
 
     if(!empty($_GET['empresa'])){
-
         $empresa = $user_data['empresa'];
         $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa));
         $tipo = $_GET['tipo'];
+
+        if($tabela === "produtos_"){
+            header("Location: ../templates/index.php?id=$user_data[id]?alert=index_alert&mensagem=Nenhuma Empresa informada, por favor informe uma empresa antes de continuar para esta tela!");
+        }
 
         if(!empty($_GET['search'])){
             $value_pesquisa = $_GET['search'];

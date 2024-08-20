@@ -10,6 +10,11 @@
     $empresa = $user_data['empresa'];
     
     $tabelaCaixa = "caixa_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
+
+    if($tabelaCaixa === "caixa_"){
+        header("Location: ../templates/index.php?id=$user_data[id]?alert=index_alert&mensagem=Nenhuma Empresa informada, por favor informe uma empresa antes de continuar para esta tela!");
+    }
+
     $sqlCaixa = "SELECT * FROM $tabelaCaixa WHERE empresa = '$empresa' and statusCaixa = 'A'";
     $sqlCaixa_result = $db->query($sqlCaixa);
     $caixaData = mysqli_fetch_assoc($sqlCaixa_result);
