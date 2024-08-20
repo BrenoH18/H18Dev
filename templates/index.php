@@ -1,6 +1,6 @@
 <?php 
     include '../includes/autenticacao.php';
-    include '../includes/alert.php'; 
+    include '../includes/alert.php';
 ?>
 
 <html lang="pt-br">
@@ -13,7 +13,9 @@
         <link rel="stylesheet" href="../static/css/index.css">
     </head>
     <body>
-        <?php include '../includes/header.php'; ?>
+        <?php 
+            include '../includes/header.php'; 
+        ?>
         <div class="content">
             <div class="box-apresentacao">
                 <fieldset class="fieldset">
@@ -31,6 +33,8 @@
                 </fieldset>
             </div>
         </div>
-        <?php include '../includes/footer.php'; ?>
+        <?php 
+            include '../includes/footer.php'; 
+        ?>
     </body>
 </html>

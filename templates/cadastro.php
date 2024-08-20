@@ -20,7 +20,7 @@
                         <form action="../backend/cadastrar.php" method="POST" class="form" id="form">
                             <input type="text" name="nome" id="nome" placeholder="Nome" class="inputUser" class="inputUser" required><br>
                             <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="inputUser" class="inputUser" required><br>
-                            <input type="email" name="email" id="email" placeholder="Email" class="inputUser" required><br>
+                            <input type="email" name="email" id="email" placeholder="E-mail" class="inputUser" required><br>
                             <input type="password" name="senha" id="senha" placeholder="Senha" class="inputUser" required><br>
                             <input type="password" name="c-senha" id="c-senha" placeholder="Senha" class="inputUser" required>
                             <input type="submit" name="submit" id="submit" value="Cadastre-se" class="inputSubmit">

@@ -20,7 +20,7 @@
                         <h2 class="h2" id="slogan">Transformando visões em realidade!</h2>
                         <p id="slogan">Insira o seu email para enviarmos o link para você voltar a acessar a sua conta.</p><br>
                         <form action="../backend/solic-rec.php" method="POST" class="form" id="form">
-                            <input type="email" name="email" placeholder="Email" class="inputUser" required><br>
+                            <input type="email" name="email" placeholder="E-mail" class="inputUser" required><br>
                             <input type="submit" name="submit" value="Enviar" class="inputSubmit">
                         </form>
                     </fieldset>

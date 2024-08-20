@@ -1,7 +1,7 @@
 .content{
     display: flex;
     align-items: center;
-    min-height: 89.9%;
+    height: 89vh;
 }
 .fieldset{
     padding: 1rem;

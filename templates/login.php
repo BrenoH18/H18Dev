@@ -19,7 +19,7 @@
                         <h1 class="h1" id="h1-login">H18 Dev</h1>
                         <h2 class="h2" id="slogan">Transformando visões em realidade!</h2>
                         <form action="../backend/autenticacao.php" method="POST" class="form" id="form">
-                            <input type="email" name="email" placeholder="Email" class="inputUser" required><br>
+                            <input type="email" name="email" placeholder="E-mail" class="inputUser" required><br>
                             <input type="password" name="senha" placeholder="Senha" id="senha" class="inputUser" required><br>
                             <input type="submit" name="submit" value="Entrar" class="inputSubmit">
                         </form>
