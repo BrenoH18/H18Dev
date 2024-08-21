@@ -27,9 +27,9 @@
             $result = mysqli_query($db, "UPDATE usuarios SET senha='$nova_senha' WHERE email='$email'");
 
             $result2 = mysqli_query($db, "DELETE FROM solicita_redefinir_senha WHERE email='$email'");
-            header('Location: ../templates/login.php?alert=token_alert&mensagem=Senha redefinida com sucesso!');
+            header('Location: ../templates/login.html?alert=token_alert&mensagem=Senha redefinida com sucesso!');
         }elseif(mysqli_num_rows($email_exists_query) == 0){
-            header('Location: ../templates/login.php?alert=token_alert&mensagem=A senha já foi alterada por este link!');
+            header('Location: ../templates/login.html?alert=token_alert&mensagem=A senha já foi alterada por este link!');
         }
     }
 ?>

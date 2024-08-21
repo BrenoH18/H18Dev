@@ -1,22 +1,36 @@
 <?php
     if(isset($_POST['submit'])){
-
         include_once('db.php');
 
-        $nome = $_POST['nome'];
-        $sobrenome = $_POST['sobrenome'];
-        $email = $_POST['email'];
+        $nome = htmlspecialchars(trim($_POST['nome']));
+        $sobrenome = htmlspecialchars(trim($_POST['sobrenome']));
+        $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
         $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
         // Verificar se o email já está registrado no banco de dados
-        $email_exists_query = mysqli_query($db, "SELECT * FROM usuarios WHERE email='$email'");
-        if (mysqli_num_rows($email_exists_query) > 0) {
-            header('Location: ../templates/cadastro.php?alert=email_alert&mensagem=Este email já está cadastrado. Por favor, escolha outro email!');
-        }elseif($_POST['senha'] !== $_POST['c-senha']){
-                header('Location: ../templates/cadastro.php?alert=email_alert&mensagem=As senhas não coincidem. Por favor, tente novamente.');
-        }else {
-            $result = mysqli_query($db, "INSERT INTO usuarios(nome, sobrenome, email, senha) VALUES ('$nome', '$sobrenome', '$email', '$senha')");
-            header('Location: ../templates/login.php');
+        $email_exists_query = $db->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $email_exists_query->bind_param('s', $email);
+        $email_exists_query->execute();
+        $result = $email_exists_query->get_result();
+
+        if ($result->num_rows > 0) {
+            header('Location: ../templates/cadastro.html?alert=Email já está cadastrado, informe outro email!');
+            exit();
+        } elseif($_POST['senha'] !== $_POST['c-senha']) {
+            header('Location: ../templates/cadastro.html?alert=As senhas não coincidem, tente novamente!');
+            exit();
+        } else {
+            $stmt = $db->prepare("INSERT INTO usuarios(nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param('ssss', $nome, $sobrenome, $email, $senha);
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                header('Location: ../templates/login.html?alert=Cadastro efetuado com sucesso!');
+            } else {
+                header('Location: ../templates/cadastro.html?alert=Erro ao cadastrar usuário, tente novamente!');
+            }
+            $stmt->close();
         }
+        $db->close();
     }
 ?>

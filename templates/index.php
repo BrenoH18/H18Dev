@@ -11,6 +11,8 @@
         <title>H18 Dev | Ínicio</title>
         <link rel="stylesheet" href="../static/css/reset.css">
         <link rel="stylesheet" href="../static/css/index.css">
+        <link rel="stylesheet" href="../static/css/footer.css">
+        <script src="../static/js/alert.js"></script>
     </head>
     <body>
         <?php 
@@ -33,8 +35,8 @@
                 </fieldset>
             </div>
         </div>
-        <?php 
-            include '../includes/footer.php'; 
-        ?>
+        <footer>
+            <span class="copy" dir="auto" style="line-height: var(--base-line-clamp-line-height); --base-line-clamp-line-height: 16px;">© 2023 Site from H18 Dev</span>
+        </footer>
     </body>
 </html>

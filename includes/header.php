@@ -67,7 +67,7 @@
         }elseif($user_data['permissao'] == 'user'){   
         
         }else{
-            header('Location: login.php');
+            header('Location: login.html');
         }
     }
 ?>

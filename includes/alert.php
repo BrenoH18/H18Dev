@@ -7,16 +7,16 @@
 
             if($alert == 'email_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=cadastro.php'>";
+                echo "<meta http-equiv='refresh' content='0;url=cadastro.html'>";
             }elseif($alert == 'login_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+                echo "<meta http-equiv='refresh' content='0;url=login.html'>";
             }elseif($alert == 'email-env'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+                echo "<meta http-equiv='refresh' content='0;url=login.html'>";
             }elseif($alert == 'token_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+                echo "<meta http-equiv='refresh' content='0;url=login.html'>";
             }elseif($alert == 'senha_alert'){
                 echo "<script>alert('$mensagem');</script>";
                 echo "<meta http-equiv='refresh' content='0;url=rec-senha.php?token=$token'>";

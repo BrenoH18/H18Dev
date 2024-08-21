@@ -18,17 +18,17 @@
                 $_SESSION['logado'] = true;
                 $_SESSION['email'] = $email;
                 
-                header("Location: ../templates/index.php?id=$user_data[id]?alert=login_alert&mensagem=Login efetuado!");
+                header("Location: ../templates/index.php?id=$user_data[id]?alert=login_alert&mensagem=Login efetuado com sucesso!");
             }else{
                 $_SESSION['logado'] = false;
-                header('Location: ../templates/login.php?alert=login_alert&mensagem=Senha incorreta, tente novamente!');
+                header('Location: ../templates/login.html?alert=E-mail ou senha incorreto, tente novamente!');
             }
         }else{
             $_SESSION['logado'] = false;
-                header('Location: ../templates/login.php?alert=login_alert&mensagem=E-mail não encontrado, tente novamente!');
+                header('Location: ../templates/login.html?alert=E-mail ou senha incorreto, tente novamente!');
         }
         
     }else{
-        header('Location: ../templates/login.php');
+        header('Location: ../templates/login.html');
     }
 ?>

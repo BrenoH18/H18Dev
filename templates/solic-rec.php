@@ -28,7 +28,7 @@
                 <div class="box-btn-login">
                     <fieldset class="fieldset" id="fieldset-btn-login">
                         <span>
-                            <p>Já tem uma conta? <a href="login.php" class="btn-cadastro">Conecte-se</a></p>
+                            <p>Já tem uma conta? <a href="login.html" class="btn-cadastro">Conecte-se</a></p>
                         </span>
                     </fieldset>
                 </div>
