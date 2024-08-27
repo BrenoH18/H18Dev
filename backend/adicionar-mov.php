@@ -13,6 +13,8 @@ if(isset($_POST['submit'])){
     $result = $db->query($sql) or die($db->error);
     $user_data = mysqli_fetch_assoc($result);
     
+    $id = $user_data['id'];
+
     $empresa = $user_data['empresa'];
 
     // Gera o nome da tabela de caixa com base no nome da empresa
@@ -38,19 +40,19 @@ if(isset($_POST['submit'])){
     $horaAtual = DATE("H:i:s");
 
     // Verifica se a senha está correta e se o usuário possui as permissões necessárias
-    if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'administrador' or $user_data['permissao'] == 'desenvolvedor')) {
+    if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'admin' or $user_data['permissao'] == 'dev')) {
         // Insere o movimento na tabela de movimentos e atualiza o total de movimentos no caixa
         $result = mysqli_query($db, "INSERT INTO $tabelaMov (usuario, empresa, descMov, valorMov, dataMov, horaMov, idCaixa, statusCaixa) VALUES ('$email', '$empresa', '$descMov', '$valorMov', '$dataAtual', '$horaAtual', '$idCaixa', '$statusCaixa')");
         $result2 = mysqli_query($db, "UPDATE $tabelaCaixa SET totalMov='$totalMov' WHERE statusCaixa='A'");
 
         // Redireciona para a página do caixa com uma mensagem de sucesso
-        header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Movimentação adicionada com sucesso!');
-    } elseif ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] != $email) or ($user_data['permissao'] != 'administrador' and $user_data['permissao'] != 'desenvolvedor')) {
+        header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Movimentação adicionada com sucesso!");
+    } elseif ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] != $email) or ($user_data['permissao'] != 'admin' and $user_data['permissao'] != 'dev')) {
         // Redireciona para a página do caixa com uma mensagem de erro se o usuário não tiver permissão
-        header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!');
+        header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!");
     }
 } else {
     // Redireciona para a página do caixa com uma mensagem de erro se o formulário não foi submetido corretamente
-    header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe $_POST[submit]!');
+    header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Não existe $_POST[submit]!");
 }
 ?>

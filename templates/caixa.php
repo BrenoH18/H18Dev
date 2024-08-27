@@ -134,15 +134,15 @@
                         ?>
                     </tbody>
                 </table>
+                <?php 
+                    echo "<div class='barra-saldo'>";
+                        echo "<p>Saldo inicial: R$$saldoInicial</p>";
+                        echo "<p>Movimentações: R$$totalMov</p>";
+                        echo "<p>Saldo: R$$saldo</p>";
+                        echo "<p>Status: $status</p>";
+                    echo "</div>";
+                ?>
             </div>
-            <?php 
-                echo "<div class='barra-saldo'>";
-                    echo "<p>Saldo inicial: R$$saldoInicial</p>";
-                    echo "<p>Movimentações: R$$totalMov</p>";
-                    echo "<p>Saldo: R$$saldo</p>";
-                    echo "<p>Status: $status</p>";
-                echo "</div>";
-            ?>
         </div>
         <?php include '../includes/footer.php'; ?>
     </body>

@@ -16,7 +16,7 @@
         // Verifica se a senha está correta, se o email na sessão corresponde ao email fornecido,
         // e se o usuário tem permissão de administrador ou desenvolvedor
         if ((password_verify($senha, $user_data['senha']) && $_SESSION['email'] == $email) &&
-            ($user_data['permissao'] == 'administrador' || $user_data['permissao'] == 'desenvolvedor')) {
+            ($user_data['permissao'] == 'admin' || $user_data['permissao'] == 'dev')) {
             
             $status = 'F'; // Define o novo status do caixa como fechado
 
@@ -24,6 +24,8 @@
             $sql = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
             $result = $db->query($sql) or die($db->error);
             $user_data = mysqli_fetch_assoc($result);
+
+            $id = $user_data['id'];
 
             $empresa = $user_data['empresa']; // Obtém o nome da empresa do usuário
 
@@ -43,7 +45,7 @@
             // Verifica se existe um caixa em aberto
             if (!isset($status_caixa['statusCaixa'])) {
                 // Redireciona com mensagem de alerta se não houver caixa aberto
-                header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!');
+                header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!");
             } else {
                 // Verifica se o email existe e se o caixa está aberto
                 if (mysqli_num_rows($email_exists_query) > 0 && $status_caixa['statusCaixa'] == 'A') {
@@ -54,20 +56,20 @@
                     $result2 = mysqli_query($db, "UPDATE $tabelaMov SET statusCaixa='$status'");
 
                     // Redireciona com mensagem de sucesso após fechar o caixa
-                    header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Caixa Fechado com sucesso!');
+                    header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Caixa Fechado com sucesso!");
                 } else {
                     // Redireciona com mensagem de alerta se não houver caixa aberto
-                    header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!');
+                    header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Não existe nenhum caixa em aberto!");
                 }
             }
        
         } elseif ((password_verify($senha, $user_data['senha']) && $_SESSION['email'] != $email) ||
                   ($user_data['permissao'] != 'administrador' && $user_data['permissao'] != 'desenvolvedor')) {
             // Redireciona com mensagem de alerta se o usuário não tiver permissão ou se o email não corresponder
-            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!');
+            header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!");
         }
     } else {
         // Redireciona com mensagem de alerta se o formulário não foi enviado corretamente
-        header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe $_POST[submit]!');
+        header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Não existe $_POST[submit]!");
     }
 ?>

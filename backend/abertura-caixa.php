@@ -13,8 +13,10 @@ if(isset($_POST['submit'])){
     $result = $db->query($sql) or die($db->error);
     $user_data = mysqli_fetch_assoc($result);
     
+    $id = $user_data['id'];
+    
     // Verifica a senha e permissões do usuário
-    if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'administrador' or $user_data['permissao'] == 'desenvolvedor')) {
+    if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'admin' or $user_data['permissao'] == 'dev')) {
 
         $saldoInicial = $_POST['saldoInicial'];
         $status = 'A';
@@ -34,17 +36,17 @@ if(isset($_POST['submit'])){
         if (!isset($status_caixa['statusCaixa'])){
             // Insere novo registro de caixa no banco de dados
             $result = mysqli_query($db, "INSERT INTO $tabelaCaixa(usuario, empresa, saldoInicial, saldo, dataAtual, horaAtual, statusCaixa) VALUES ('$email', '$empresa', '$saldoInicial', '$saldoInicial', '$dataAtual', '$horaAtual', '$status')");
-            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Caixa aberto com sucesso!');
+            header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Caixa aberto com sucesso!");
         } else {
-            header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=O caixa já se encontra aberto!');
+            header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=O caixa já se encontra aberto!");
         }
 
     } elseif ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] != $email) or ($user_data['permissao'] != 'administrador' and $user_data['permissao'] != 'desenvolvedor')) {
         // Caso o usuário não tenha permissão ou as credenciais estejam incorretas
-        header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!');
+        header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Usuário não tem permissão para alterar o caixa ou não existe!");
     }
 } else {
     // Caso o formulário não tenha sido submetido corretamente
-    header('Location: ../templates/caixa.php?alert=caixa_alert&mensagem=Não existe $_POST[submit]!');
+    header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Não existe $_POST[submit]!");
 }
 ?>

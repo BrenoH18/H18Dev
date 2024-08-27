@@ -3,6 +3,7 @@
         if (isset($_GET["alert"])) {
             $alert = $_GET['alert'];
             $mensagem = $_GET['mensagem'];
+            $id = $_GET['id'];
             if(isset($token)){
                 $token = $_GET['token'];
             }

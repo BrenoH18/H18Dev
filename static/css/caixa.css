@@ -1,9 +1,11 @@
 .content {
-    height: 89vh;
+    display: flex;
+    height: calc(100vh - 78px);
 }
 
 .tool-bar {
     display: flex;
+    flex-direction: column;
     background-color: rgba(1, 9, 70, 0.8);
     text-align: center;
     justify-content: space-evenly;
@@ -19,6 +21,7 @@
     border: none;
     background: none;
 }
+
 .barra-saldo {
     display: flex;
     background-color: rgba(1, 9, 70, 0.8);
@@ -27,6 +30,7 @@
     padding: 0.5rem;
     color: white;
     box-shadow: 0rem .1875rem .625rem rgba(0,0,0,0.5);
+    margin-top: 1.8rem;
 }
 
 .inputSubmit {
@@ -38,7 +42,8 @@
 }
 
 .movimentacoes {
-    height: 89%;
+    height: 100%;
+    width: 100%;
 }
 
 .table-mov {
