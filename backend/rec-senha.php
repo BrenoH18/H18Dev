@@ -35,10 +35,10 @@
             $result2 = mysqli_query($db, "DELETE FROM solicita_redefinir_senha WHERE email='$email'");
             
             // Redireciona para a página de login com uma mensagem de sucesso
-            header('Location: ../templates/login.html?alert=token_alert&mensagem=Senha redefinida com sucesso!');
+            header('Location: ../templates/login.php?alert=token_alert&mensagem=Senha redefinida com sucesso!');
         } elseif (mysqli_num_rows($email_exists_query) == 0) {
             // Redireciona para a página de login com uma mensagem de erro caso a senha já tenha sido alterada
-            header('Location: ../templates/login.html?alert=token_alert&mensagem=A senha já foi alterada por este link!');
+            header('Location: ../templates/login.php?alert=token_alert&mensagem=A senha já foi alterada por este link!');
         }
     }
 ?>

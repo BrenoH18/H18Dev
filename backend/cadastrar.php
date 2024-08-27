@@ -17,11 +17,11 @@
 
         if ($result->num_rows > 0) { // Verifica se o email já existe no banco de dados
             // Redireciona com mensagem de alerta se o email já estiver registrado
-            header('Location: ../templates/cadastro.html?alert=Email já está cadastrado, informe outro email!');
+            header('Location: ../templates/cadastro.php?alert=cadastro_alert&mensagem=E-mail inválido, informe outro e-mail!');
             exit();
         } elseif ($_POST['senha'] !== $_POST['c-senha']) { // Verifica se as senhas são iguais
             // Redireciona com mensagem de alerta se as senhas não coincidirem
-            header('Location: ../templates/cadastro.html?alert=As senhas não coincidem, tente novamente!');
+            header('Location: ../templates/cadastro.php?alert=cadastro_alert&mensagem=As senhas não coincidem, tente novamente!');
             exit();
         } else {
             // Prepara e executa a consulta para inserir um novo usuário no banco de dados
@@ -31,10 +31,10 @@
 
             if ($stmt->affected_rows > 0) { // Verifica se o cadastro foi bem-sucedido
                 // Redireciona com mensagem de sucesso após o cadastro
-                header('Location: ../templates/login.html?alert=Cadastro efetuado com sucesso!');
+                header('Location: ../templates/login.php?alert=login_alert&mensagem=Cadastro efetuado com sucesso!');
             } else {
                 // Redireciona com mensagem de erro se o cadastro falhar
-                header('Location: ../templates/cadastro.html?alert=Erro ao cadastrar usuário, tente novamente!');
+                header('Location: ../templates/cadastro.php?alert=cadastro_alert&mensagem=Erro ao cadastrar usuário, tente novamente!');
             }
             $stmt->close(); // Fecha o comando preparado
         }

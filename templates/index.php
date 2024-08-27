@@ -1,7 +1,6 @@
-<?php 
-    include '../includes/autenticacao.php';
-    include '../includes/alert.php';
-?>
+<?php include '../includes/autenticacao.php';?>
+<?php require_once '../includes/alert.php'?>
+
 
 <html lang="pt-br">
     <head>
@@ -12,7 +11,6 @@
         <link rel="stylesheet" href="../static/css/reset.css">
         <link rel="stylesheet" href="../static/css/index.css">
         <link rel="stylesheet" href="../static/css/footer.css">
-        <script src="../static/js/alert.js"></script>
     </head>
     <body>
         <?php 

@@ -1,3 +1,5 @@
+<?php require_once '../includes/alert.php'?>
+
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
@@ -7,7 +9,6 @@
         <link rel="stylesheet" href="../static/css/reset.css">
         <link rel="stylesheet" href="../static/css/login.css">
         <link rel="stylesheet" href="../static/css/footer.css">
-        <script src="../static/js/alert.js"></script>
     </head>
     <body>
         <div class="content">
@@ -27,7 +28,7 @@
                 <div class="box-btn-cadastro">
                     <fieldset class="fieldset" id="fieldset-btn-cadastro">
                         <span>
-                            <p>Não tem uma conta? <a href="cadastro.html" class="btn-cadastro">Cadastre-se</a></p>
+                            <p>Não tem uma conta? <a href="cadastro.php" class="btn-cadastro">Cadastre-se</a></p>
                         </span>
                     </fieldset>
                 </div>

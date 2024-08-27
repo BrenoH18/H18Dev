@@ -19,20 +19,20 @@
                 $_SESSION['email'] = $email; // Armazena o email do usuário na sessão
                 
                 // Redireciona para a página principal com uma mensagem de sucesso
-                header("Location: ../templates/index.php?id=$user_data[id]?alert=login_alert&mensagem=Login efetuado com sucesso!");
+                header("Location: ../templates/index.php?id=$user_data[id]&alert=index_alert&mensagem=Login efetuado com sucesso!");
             }else{
                 // Se a senha estiver incorreta, define a sessão como não logada e redireciona para a página de login com uma mensagem de erro
                 $_SESSION['logado'] = false;
-                header('Location: ../templates/login.html?alert=E-mail ou senha incorreto, tente novamente!');
+                header('Location: ../templates/login.php?alert=login_alert&mensagem=E-mail ou senha incorreto, tente novamente!');
             }
         }else{
             // Se o usuário não for encontrado no banco de dados, define a sessão como não logada e redireciona para a página de login com uma mensagem de erro
             $_SESSION['logado'] = false;
-            header('Location: ../templates/login.html?alert=E-mail ou senha incorreto, tente novamente!');
+            header('Location: ../templates/login.php?alert=login_alert&mensagem=E-mail ou senha incorreto, tente novamente!');
         }
         
     }else{
         // Se o formulário não foi submetido, redireciona para a página de login
-        header('Location: ../templates/login.html');
+        header('Location: ../templates/login.php');
     }
 ?>

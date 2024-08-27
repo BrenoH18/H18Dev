@@ -16,6 +16,7 @@
 
         if($result->num_rows > 0){
             while($product_data = mysqli_fetch_assoc($result)){
+                $productId = $product_data['id'];
                 $descricao = $product_data['descricao'];
                 $modelo = $product_data['modelo'];
                 $marca = $product_data['marca'];
@@ -65,7 +66,7 @@
                             <br><br>
                             <input type="number" step="0.01" name="venda" id="venda" value="<?php echo $venda ?>" class="inputUser" placeholder="Preço de Venda" required>
                             <br><br>
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
+                            <input type="hidden" name="id" value="<?php echo $productId ?>">
                             <input type="submit" name="update" id="update" class="inputSubmit"><br>
                             <button class="btn-voltar" onclick="window.location.href='estoque.php?empresa=<?php echo $user_data['empresa']?>&tipo=todos'">Voltar</button>
                         </fieldset>

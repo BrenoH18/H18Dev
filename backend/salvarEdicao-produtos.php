@@ -15,22 +15,30 @@
         $venda = $_POST['venda']; // Obtém o preço de venda do produto
         $custoEstoque = $qtd * $custo; // Calcula o custo total do estoque
         $lucro = $venda - $custo; // Calcula o lucro por unidade
+        
+        $email = $_SESSION['email']; // Obtém o email do usuário logado
+    
+        // Consulta o banco de dados para obter os dados do usuário com base no email
+        $consult = "SELECT * FROM usuarios WHERE email = '$email'";
+        $consult_result = $db->query($consult);
+        $user_data = mysqli_fetch_assoc($consult_result); // Armazena os dados do usuário
 
         $empresa = $user_data['empresa']; // Obtém o nome da empresa do usuário
         $tabela = "produtos_" . strtolower(str_replace(' ', '_', $empresa)); // Define o nome da tabela de produtos
 
-        // Prepara a consulta SQL para atualizar os dados do produto na tabela correspondente
-        $sqlUpdate = "UPDATE $tabela SET descricao='$descricao', modelo='$modelo', marca='$marca', fornecedor='$fornecedor', qtd='$qtd', custo='$custo', venda='$venda', lucro='$lucro', custoEstoque='$custoEstoque' WHERE id='$id'";
+       // Prepara a consulta SQL para atualizar os dados do produto na tabela correspondente
+        $sqlUpdate = "UPDATE $tabela SET descricao=?, modelo=?, marca=?, fornecedor=?, qtd=?, custo=?, venda=?, lucro=?, custoEstoque=? WHERE id=?";
 
-        $result = $db->query($sqlUpdate); // Executa a consulta de atualização
+        $stmt = $db->prepare($sqlUpdate); // Prepara a consulta
+        $stmt->bind_param("ssssiddiid", $descricao, $modelo, $marca, $fornecedor, $qtd, $custo, $venda, $lucro, $custoEstoque, $id); // Vincula os parâmetros
+        $stmt->execute(); // Executa a consulta
+
+        $result = $stmt->affected_rows; // Obtém o número de linhas afetadas
+
+        $stmt->close(); // Fecha a declaração preparada
+
     }
 
-    $email = $_SESSION['email']; // Obtém o email do usuário logado
-
-    // Consulta o banco de dados para obter os dados do usuário com base no email
-    $consult = "SELECT * FROM usuarios WHERE email = '$email'";
-    $consult_result = $db->query($consult);
-    $user_data = mysqli_fetch_assoc($consult_result); // Armazena os dados do usuário
 
     // Redireciona o usuário para a página de estoque com parâmetros atualizados
     header("Location: ../templates/estoque.php?empresa=$user_data[empresa]&tipo=todos");

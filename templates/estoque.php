@@ -136,8 +136,8 @@
                     </tbody>
                 </table>
             </div>
+            <script src="../static/js/search.js"></script>
         </div>
-        <script src="../static/js/search.js"></script>
         <?php include '../includes/footer.php'; ?>
     </body>
 </html>

@@ -1,8 +1,8 @@
 <?php
-    if($user_data['permissao'] == 'desenvolvedor'){
+    if($user_data['permissao'] == 'dev'){
         $permissao = true;
         $email = $_SESSION['email'];
-    }elseif($user_data['permissao'] == 'administrador'){
+    }elseif($user_data['permissao'] == 'admin'){
         
     }else{
         $permissao = false;

@@ -1,7 +1,7 @@
 <?php
-    if($user_data['permissao'] == 'desenvolvedor'){
+    if($user_data['permissao'] == 'dev'){
         $email = $_SESSION['email'];
-    }elseif($user_data['permissao'] == 'administrador'){
+    }elseif($user_data['permissao'] == 'admin'){
         $email = $_SESSION['email'];
     }elseif($user_data['permissao'] == 'vendedor'){
         $email = $_SESSION['email'];

@@ -56,7 +56,7 @@
                         <h1>H18 Desenvolvimentos</h1>
                         <p>Olá, $nome $sobrenome.</p>
                         <p>Recebemos uma mensagem informando que você esqueceu sua senha. Se foi você, pode redefinir a senha agora.</p>        
-                        <a href='http://localhost/GitHub/H18-Dev-Site/templates/rec-senha.php?token=$token'><button>Redefinir senha</button></a>";
+                        <a href='http://localhost/h18dev/templates/rec-senha.php?token=$token'><button>Redefinir senha</button></a>";
 
             // Define o corpo alternativo da mensagem em texto
             $mail->AltBody = 'Olá, $nome $sobrenome. Recebemos uma mensagem informando que você esqueceu sua senha. Se foi você, pode redefinir a senha agora.';
@@ -66,10 +66,10 @@
                 // Caso haja erro, ele pode ser exibido ou registrado
                 // echo 'Erro ao enviar mensagem: ' . $mail->ErrorInfo;
             } else {
-                header('Location: ../templates/solic-sucess.php'); // Redireciona para a página de sucesso
+                header('Location: ../templates/login.php?alert=login_alert&mensagem=E-mail enviado com sucesso!');
             }
         } else {
-            header('Location: ../templates/solic-rec.php?alert=email-env&mensagem=Não há usuário com o email informado, tente novamente!'); // Redireciona em caso de email não encontrado
+            header('Location: ../templates/solic-rec.php?alert=solic-rec_alert&mensagem=E-mail inválido, tente novamente!'); // Redireciona em caso de email não encontrado
         }
     }
 ?>

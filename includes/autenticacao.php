@@ -1,11 +1,10 @@
 <?php
     session_start();
-
+    
     if($_SESSION['logado'] == true){
-
-        $email = $_SESSION['email'];
-        
         include_once('../backend/db.php');
+       
+        $email = $_SESSION['email'];
         
         $consult = "SELECT * FROM usuarios WHERE email = '$email'";
         $consult_result = $db->query($consult);
@@ -13,6 +12,6 @@
         
     }else{
         session_destroy();
-        header('Location: login.html');
+        header('Location: login.php');
     }
 ?>

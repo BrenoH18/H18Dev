@@ -3,24 +3,26 @@
         if (isset($_GET["alert"])) {
             $alert = $_GET['alert'];
             $mensagem = $_GET['mensagem'];
-            $token = $_GET['token'];
+            if(isset($token)){
+                $token = $_GET['token'];
+            }
 
-            if($alert == 'email_alert'){
+            if($alert == 'cadastro_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=cadastro.html'>";
+                echo "<meta http-equiv='refresh' content='0;url=cadastro.php'>";
             }elseif($alert == 'login_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=login.html'>";
-            }elseif($alert == 'email-env'){
+                echo "<meta http-equiv='refresh' content='0;url=login.php'>";
+            }elseif($alert == 'index_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=login.html'>";
-            }elseif($alert == 'token_alert'){
+                echo "<meta http-equiv='refresh' content='0;url=index.php?id=$user_data[id]'>";
+            }elseif($alert == 'solic-rec_alert'){
                 echo "<script>alert('$mensagem');</script>";
-                echo "<meta http-equiv='refresh' content='0;url=login.html'>";
-            }elseif($alert == 'senha_alert'){
+                echo "<meta http-equiv='refresh' content='0;url=solic-rec.php'>";
+            }elseif($alert == 'rec-senha_alert'){
                 echo "<script>alert('$mensagem');</script>";
                 echo "<meta http-equiv='refresh' content='0;url=rec-senha.php?token=$token'>";
-            }elseif($alert == 'referencia_alert'){
+            }elseif($alert == 'cadastro-produtos_alert'){
                 echo "<script>alert('$mensagem');</script>";
                 echo "<meta http-equiv='refresh' content='0;url=cadastro-produtos.php?id=$'>";
             }elseif($alert == 'caixa_alert'){

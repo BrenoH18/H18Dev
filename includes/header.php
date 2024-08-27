@@ -3,7 +3,7 @@
     $empresa = $user_data['empresa'];
 
     function ul($user_data, $id, $empresa){
-        if($user_data['permissao'] == 'desenvolvedor'){
+        if($user_data['permissao'] == 'dev'){
             echo"<ul>";
                 echo 
                     "<li class='nav-item'>
@@ -19,7 +19,7 @@
                     </li>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/estoque.php?empresa=<?php echo $empresa?>&tipo=todos' class='nav-link'>Estoque</a>
+                        <a href='../templates/estoque.php?empresa=$empresa&tipo=todos' class='nav-link'>Estoque</a>
                     </li>";
                 echo 
                     "<li class='nav-item'>
@@ -27,10 +27,10 @@
                     </li>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/index.php?id=$id' class='nav-link'>Ínicio</a>
+                        <a href='../templates/index.php?id=$id' class='nav-link'>Início</a>
                     </li>";
             echo"</ul>";
-        }elseif($user_data['permissao'] == 'administrador'){
+        }elseif($user_data['permissao'] == 'admin'){
             echo"<ul>";
                 // echo 
                 //     "<li class='nav-item'>
@@ -42,7 +42,7 @@
                     </li>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/estoque.php?empresa=<?php echo $empresa?>&tipo=todos' class='nav-link'>Estoque</a>
+                        <a href='../templates/estoque.php?empresa=$empresa&tipo=todos' class='nav-link'>Estoque</a>
                     </li>";
                 // echo 
                 //     "<li class='nav-item'>
@@ -50,7 +50,7 @@
                 //     </li>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/index.php?id=$id' class='nav-link'>Ínicio</a>
+                        <a href='../templates/index.php?id=$id' class='nav-link'>Início</a>
                     </li>";
             echo"</ul>";
         }elseif($user_data['permissao'] == 'vendedor'){
@@ -61,13 +61,13 @@
                 //     </li>";
                 echo 
                     "<li class='nav-item'>
-                        <a href='../templates/index.php?id=$id' class='nav-link'>ínicio</a>
+                        <a href='../templates/index.php?id=$id' class='nav-link'>Início</a>
                     </li>";
             echo"</ul>";
         }elseif($user_data['permissao'] == 'user'){   
         
         }else{
-            header('Location: login.html');
+            header('Location: login.php');
         }
     }
 ?>

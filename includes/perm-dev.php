@@ -1,5 +1,5 @@
 <?php
-    if($user_data['permissao'] == 'desenvolvedor'){
+    if($user_data['permissao'] == 'dev'){
         $permissao = true;
         $email = $_SESSION['email'];
     }else{
