@@ -58,12 +58,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Caixa</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="../static/css/reset.css">
-        <link rel="stylesheet" href="../static/css/caixa.css">
-        <link rel="stylesheet" href="../static/css/abrir-caixa.css">
-        <link rel="stylesheet" href="../static/css/fechar-caixa.css">
-        <link rel="stylesheet" href="../static/css/adicionar-mov.css">
-        <script src="../static/js/popup.js"></script>
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/caixa.css">
+        <link rel="stylesheet" href="../assets/css/abrir-caixa.css">
+        <link rel="stylesheet" href="../assets/css/fechar-caixa.css">
+        <link rel="stylesheet" href="../assets/css/adicionar-mov.css">
+        <script src="../assets/js/popup.js"></script>
     </head>
     <body>
         <?php include '../includes/header.php';?>

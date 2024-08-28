@@ -74,7 +74,7 @@
 
 <html lang="pt-br">
     <head>
-        <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../assets/css/header.css">
     </head>
     <body>
         <header>
@@ -113,6 +113,6 @@
                 </div>
             </div>
         </header>
-        <script src="../static/js/menuShow.js"></script>
+        <script src="../assets/js/menuShow.js"></script>
     </body>
 </html>

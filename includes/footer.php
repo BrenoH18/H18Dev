@@ -1,6 +1,6 @@
 <html lang="pt-br">
     <head>
-        <link rel="stylesheet" href="../static/css/footer.css">
+        <link rel="stylesheet" href="../assets/css/footer.css">
     </head>
     <body>
         <footer>

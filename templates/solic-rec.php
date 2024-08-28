@@ -8,8 +8,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Redefinir senha</title>
-        <link rel="stylesheet" href="../static/css/reset.css">
-        <link rel="stylesheet" href="../static/css/solic-rec.css">
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/solic-rec.css">
     </head>
     <body>
         <div class="content">

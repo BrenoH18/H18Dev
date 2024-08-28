@@ -9,8 +9,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Usuários</title>
-        <link rel="stylesheet" href="../static/css/reset.css">
-        <link rel="stylesheet" href="../static/css/usuarios.css">
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/usuarios.css">
     </head>
     <body>
         <?php include '../includes/header.php';?>

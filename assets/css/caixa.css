@@ -106,10 +106,6 @@ td, th{
     padding: 5px;
 }
 
-td{
-
-}
-
 .barra-saldo {
     display: flex;
     background-color: rgba(1, 9, 70, 0.8);

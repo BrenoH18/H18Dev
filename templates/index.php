@@ -8,9 +8,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Ínicio</title>
-        <link rel="stylesheet" href="../static/css/reset.css">
-        <link rel="stylesheet" href="../static/css/index.css">
-        <link rel="stylesheet" href="../static/css/footer.css">
+        <link rel="stylesheet" href="../assets/css/reset.css">
+        <link rel="stylesheet" href="../assets/css/index.css">
+        <link rel="stylesheet" href="../assets/css/footer.css">
     </head>
     <body>
         <?php 
