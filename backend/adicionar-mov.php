@@ -33,6 +33,7 @@ if(isset($_POST['submit'])){
     $descMov = $_POST['descMov']; // Descrição do movimento
     $valorMov = $_POST['valorMov']; // Valor do movimento
     $totalMov = $totalMovAntigo + $valorMov; // Soma o movimento atual ao total de movimentos anteriores
+    $saldo = $caixaData['saldo'] + $valorMov;
 
     // Define o fuso horário de Brasília e obtém a data e hora atuais
     date_default_timezone_set('America/Sao_Paulo');
@@ -41,9 +42,15 @@ if(isset($_POST['submit'])){
 
     // Verifica se a senha está correta e se o usuário possui as permissões necessárias
     if ((password_verify($senha, $user_data['senha']) and $_SESSION['email'] == $email) and ($user_data['permissao'] == 'admin' or $user_data['permissao'] == 'dev')) {
-        // Insere o movimento na tabela de movimentos e atualiza o total de movimentos no caixa
-        $result = mysqli_query($db, "INSERT INTO $tabelaMov (usuario, empresa, descMov, valorMov, dataMov, horaMov, idCaixa, statusCaixa) VALUES ('$email', '$empresa', '$descMov', '$valorMov', '$dataAtual', '$horaAtual', '$idCaixa', '$statusCaixa')");
-        $result2 = mysqli_query($db, "UPDATE $tabelaCaixa SET totalMov='$totalMov' WHERE statusCaixa='A'");
+        // Inserção de movimento
+        $stmt = mysqli_prepare($db, "INSERT INTO $tabelaMov (usuario, empresa, descMov, valorMov, dataMov, horaMov, idCaixa, statusCaixa) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, 'ssssssss', $email, $empresa, $descMov, $valorMov, $dataAtual, $horaAtual, $idCaixa, $statusCaixa);
+        mysqli_stmt_execute($stmt);
+
+        // Atualização do caixa
+        $stmt2 = mysqli_prepare($db, "UPDATE $tabelaCaixa SET totalMov=?, saldo=? WHERE statusCaixa='A'");
+        mysqli_stmt_bind_param($stmt2, 'ss', $totalMov, $saldo);
+        mysqli_stmt_execute($stmt2);
 
         // Redireciona para a página do caixa com uma mensagem de sucesso
         header("Location: ../templates/caixa.php?id=$id&alert=caixa_alert&mensagem=Movimentação adicionada com sucesso!");

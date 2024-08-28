@@ -80,7 +80,9 @@
 .movimentacoes {
     height: 100%;
     width: 100%;
-    height: calc(100vh - 133px);
+    height: calc(100vh - 104px);
+    border-collapse: collapse;
+    overflow: auto;
 }
 
 .table-mov {

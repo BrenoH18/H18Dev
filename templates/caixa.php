@@ -22,7 +22,7 @@
     if (isset($caixaData['saldoInicial'])){
         $saldoInicial = number_format($caixaData['saldoInicial'], 2, ',', '.');
         $totalMov = number_format($caixaData['totalMov'], 2, ',', '.');
-        $saldo = number_format($caixaData['saldoInicial']+$caixaData['totalMov'], 2, ',', '.');
+        $saldo = number_format($caixaData['saldo'], 2, ',', '.');
         $idCaixa = $caixaData['id'];
     }else{
         $saldoInicial = number_format(0, 2);
@@ -37,7 +37,7 @@
     $horaAtual = DATE("H:i:s");
 
     $tabelaMov = "movimentacoes_" . strtolower(str_replace(' ', '_', $user_data['empresa']));
-    $sqlMov = "SELECT * FROM $tabelaMov WHERE empresa = '$empresa' AND dataMov = '$dataAtual' AND idCaixa = $idCaixa ORDER BY id ASC";
+    $sqlMov = "SELECT * FROM $tabelaMov WHERE empresa = '$empresa' AND idCaixa = $idCaixa ORDER BY id ASC";
     $sqlMov_result = $db->query($sqlMov);
 
     $sqlStatus = "SELECT * FROM $tabelaCaixa WHERE empresa ='$empresa' AND statusCaixa = 'A'";
