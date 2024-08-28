@@ -87,9 +87,7 @@
                 </div>
 
                 <div class="sair-button">
-                    <button>
-                        <a href="../backend/sair.php">Sair</a>
-                    </button>
+                    <a href="../backend/sair.php">Sair</a>
                 </div>
 
                 <div class="mobile-menu-icon">

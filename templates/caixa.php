@@ -57,6 +57,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>H18 Dev | Caixa</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="../static/css/reset.css">
         <link rel="stylesheet" href="../static/css/caixa.css">
         <link rel="stylesheet" href="../static/css/abrir-caixa.css">
@@ -66,7 +67,6 @@
     </head>
     <body>
         <?php include '../includes/header.php';?>
-        <div id="overlay"></div>
         <div id="popup-abrir-caixa">
             <h2>Abertura de Caixa</h2>
             <form action="../backend/abertura-caixa.php" method="POST" class="form" id="form">
@@ -100,13 +100,7 @@
                 <input type="submit" value="Cancelar" class="inputSubmitCancelar" onclick="closePopupFecharCaixa()">
             </form>
         </div>
-        <div class="content">
-            <div class="tool-bar">
-                <button onclick="openPopupAbrirCaixa()">Abrir Caixa</button>
-                <button onclick="openPopupAdicionarMov()">Adicionar</button>
-                <button>Retirar</button>
-                <button onclick="openPopupFecharCaixa()">Fechar Caixa</button>
-            </div>
+        <div class="content-caixa">
             <div class="movimentacoes">
                 <table class="table-mov">
                     <thead>
@@ -134,16 +128,22 @@
                         ?>
                     </tbody>
                 </table>
-                <?php 
-                    echo "<div class='barra-saldo'>";
-                        echo "<p>Saldo inicial: R$$saldoInicial</p>";
-                        echo "<p>Movimentações: R$$totalMov</p>";
-                        echo "<p>Saldo: R$$saldo</p>";
-                        echo "<p>Status: $status</p>";
-                    echo "</div>";
-                ?>
+            </div>
+            <div class="tool-bar">
+                <button class="btn-abrir-caixa" onclick="openPopupAbrirCaixa()"><i class="fa-solid fa-door-open"></i></button>
+                <button class="btn-adicionar-mov" onclick="openPopupAdicionarMov()"><i class="fa-solid fa-money-bill-1-wave"></i></button>
+                <button class="btn-retirar-mov" onclick="openPopupRetirarMov()"><i class="fa-solid fa-money-bill-1-wave"></i></button>
+                <button class="btn-fechar-caixa" onclick="openPopupFecharCaixa()"><i class="fa-solid fa-door-closed"></i></button>
             </div>
         </div>
+        <?php 
+            echo "<div class='barra-saldo'>";
+                echo "<p>Saldo inicial: R$$saldoInicial</p>";
+                echo "<p>Movimentações: R$$totalMov</p>";
+                echo "<p>Saldo: R$$saldo</p>";
+                echo "<p>Status: $status</p>";
+            echo "</div>";
+        ?>
         <?php include '../includes/footer.php'; ?>
     </body>
 </html>
